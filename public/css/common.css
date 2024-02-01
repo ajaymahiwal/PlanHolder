@@ -39,6 +39,11 @@ li{
 a{
     text-decoration: none;
     color: black;
+    cursor:pointer;
+}
+button{
+    border: none;
+    cursor:pointer;
 }
 header{
     position: fixed;
