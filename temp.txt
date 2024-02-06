@@ -1,0 +1,4 @@
+.empty-task-list{
+    background: linear-gradient(180deg,var(--ph-kanban-empty-gradient) 0%, rgba(232, 236, 238, 0) 60%);
+    border-radius: 8px;
+}

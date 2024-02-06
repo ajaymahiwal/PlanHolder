@@ -196,9 +196,13 @@ nav.sec-3-options div{
     display: flex;
     margin-top: 1.5rem;
 }
-.sec-3-content{
+.sec-3-all-content{
     width: 40%;
     padding: 0 2rem 0 0;
+}
+
+.unactive{
+    display: none;
 }
 
 .sec-3-content p:nth-child(1){
@@ -323,11 +327,28 @@ nav.sec-4-options div{
     display: flex;
     margin-top: 1.5rem;
 }
-.sec-4-content{
+.sec-4-all-content{
     width: 40%;
     padding: 0 2rem 0 0;
 }
-
+.sec-4-content > div{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+}
+.sec-4-content > div > div{
+    width: 50%;
+    font-weight: 500;
+}
+.sec-4-content > div span{
+    display: inline-block;
+    color: white;
+    background-color: blueviolet;
+    border-radius: 30px;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+}
 .sec-4-content p:nth-child(1){
     font-size: 2rem;
     font-weight: 600;
@@ -338,26 +359,7 @@ nav.sec-4-options div{
     font-size: 1.3rem;
     font-weight: 100;
 }
-.sec-4-content > div{
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 1rem;
-    /* border: 2px solid blue; */
-}
-.sec-4-content > div > div{
-    width: 50%;
-    font-weight: 500;
-    /* border: 2px solid red; */
-}
-.sec-4-content > div span{
-    display: inline-block;
-    color: white;
-    background-color: #4EB45A;
-    border-radius: 30px;
-    width: 1.5rem;
-    height: 1.5rem;
-    text-align: center;
-}
+
 .sec-4-content > div > p > a{
     font-size: 1.1rem;
     color: blueviolet;
@@ -469,7 +471,6 @@ nav.sec-4-options div{
 /* //////////// */
 
 .sec-6{
-    border: 2px solid red;
     margin-top: 4vw;
     display: flex;
     flex-direction: column;
@@ -500,5 +501,11 @@ nav.sec-4-options div{
 .integration-tools > div{
     width: 10vw;
     height: 10vw;
-    background-color: #f7b6b2;
+    /* background-color: #f7b6b2; */
+}
+.inte-tool img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    color: red;
 }
