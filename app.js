@@ -15,7 +15,9 @@ app.use(express.urlencoded({extended:true}))
 
 app.get("/",(req,res)=>{
     res.render("./main/home.ejs");
-})
+});
+
+app.get("")
 
 
 const port = process.env.PORT || 5000;
