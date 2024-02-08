@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form > button{
+            padding: .8rem 2rem;
+            border: none;
+            background-color: rgba(137, 43, 226, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <form action="/signup" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="user[name]" id="">
+        </div>
+        <div>
+            <label for="name">Email:</label>
+            <input type="email" name="user[username]" id="">
+        </div>
+        <div>
+            <label for="name">Password:</label>
+            <input type="password" name="user[password]" id="">
+        </div>
+        <button>SignUp</button>
+    </form>
+</body>
+</html>
