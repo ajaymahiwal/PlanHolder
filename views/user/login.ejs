@@ -11,9 +11,15 @@
             border: none;
             background-color: rgba(137, 43, 226, 0.5);
         }
+        .error{
+            color: red;
+        }
     </style>
 </head>
 <body>
+    <% if (errorMsg && errorMsg.length) { %>
+        <h1 class="error"> <%=errorMsg %></h1>
+       <% } %>
     <form action="/login" method="post">
         <!-- <div>
             <label for="name">Name:</label>

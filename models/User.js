@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
     email:{
         type: String,
     },
+    tasks:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'task'
+        }
+    ]
 });
 
 userSchema.plugin(passportLocalMongoose);

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/tasks/<%= task._id %>?_method=PUT" method="post">
+        <div>
+            <label for="">Task Name</label>
+            <input type="text" name="task[name]" id="" value="<%= task.name%>">
+        </div>
+        <div>
+            <label for="">Task description</label>
+            <textarea name="task[description]" id="" cols="30" rows="10"><%= task.description%>
+            </textarea>
+        </div>
+        <div>
+            <label for="">Task Deadline</label>
+            <input type="date" name="task[deadline]" id="" value="<%=task.deadline.toISOString().substring(0, 10);%>">
+        </div>
+        <button>Edit Task</button>
+    </form>
+</body>
+</html>

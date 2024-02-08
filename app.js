@@ -7,9 +7,11 @@ const path = require("path");
 const session = require('express-session');
 const mongoose = require("mongoose");
 const {User} = require("./models/User");
+const {Task} = require("./models/Task");
 const passport = require('passport');
 const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
+const methodOverride = require("method-override");
 
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/taskmgt';
@@ -32,7 +34,7 @@ app.set("views",path.join(__dirname,"views"));
 // Universal Middlewares
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}))
-
+app.use(methodOverride("_method"));
 app.use(flash());
 app.use(session({
     secret: 'ajaymahiwal',
@@ -81,15 +83,23 @@ app.post("/signup",async(req,res,next)=>{
         let {name,username,password} = req.body.user;
         let email = username;
         const user = new User({name,username,email});
-        const regUser = await User.register(user,password);
+        let checkUser = await User.findOne({username});
+        if(!checkUser){
+            const regUser = await User.register(user,password);
 
-        req.login(regUser,(err)=>{
-            if(err){
-                res.redirect("/signup");
+            req.login(regUser,(err)=>{
+                if(err){
+                    res.redirect("/signup");
             }
             console.log("Successful new account is created. and login done");
             res.redirect("/dashboard");
-        })
+            })
+        }
+        else{
+            req.flash("error","Username already exits, So Direct Login.");
+            res.redirect("/login");
+        }
+        
     }
     catch(err){
         console.log("ERROR on signup post route.");
@@ -112,7 +122,7 @@ app.get("/login",(req,res)=>{
     res.render("./user/login");
 });
 
-app.post("/login",passport.authenticate("local",{failureRedirect:"/login"}),(req,res)=>{
+app.post("/login",passport.authenticate("local",{failureRedirect:"/login",failureFlash:true,successFlash:true}),(req,res)=>{
     console.log("login complete");
     res.redirect("/dashboard");
 });
@@ -129,7 +139,74 @@ app.get("/logout",(req,res)=>{
 });
 
 
+
+app.use("/tasks",(req,res,next)=>{
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect("/login");
+    }
+});
+
+//Task -  CRUD operations
+app.get("/tasks",async (req,res)=>{
+    console.log(req.user);
+    // let u = req.user;
+    let user = await User.findById(req.user._id).populate('tasks');
+    res.render("./task/tasks.ejs",{user});
+})
+app.get("/tasks/new",(req,res)=>{
+    res.render("./task/new.ejs");
+})
+app.post("/tasks/new",async (req,res)=>{
+    let {task} = req.body;
+    let newtask = new Task({...task});
+    await newtask.save();
+
+    let upuser = await User.findByIdAndUpdate(req.user._id,{tasks:[...req.user.tasks,newtask._id]},{new:true,runValidators: true});
+
+    console.log(upuser);
+    res.redirect("/tasks");
+})
+
+app.get("/tasks/:id",async(req,res)=>{
+    let id = req.params.id;
+    let task = await Task.findById(id);
+    res.render("./task/showtask",{task});
+})
+
+app.get("/tasks/:id/edit",async(req,res)=>{
+    let id = req.params.id;
+    let task = await Task.findById(id);
+    res.render("./task/edit",{task});
+})
+
+app.put("/tasks/:id",async(req,res)=>{
+    let id = req.params.id;
+    let {task} = req.body;
+
+    let newTask = await Task.findByIdAndUpdate(id,{...task},{new:true,runValidators: true});
+    // await newTask.save();
+    console.log("old Task",newTask);
+
+    res.redirect(`/tasks/${id}`);
+})
+app.delete("/tasks/:id",async(req,res)=>{
+    let id = req.params.id;
+    let delTask = await Task.findByIdAndDelete(id);
+    console.log("task deleted", delTask);
+
+    res.redirect("/tasks");
+})
+
+
+
+
+
+
+
 app.use((err,req,res,next)=>{
+    console.log(err);
     res.send("Error Occured !");
 })
 

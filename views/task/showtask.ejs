@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+<body>
+    <h1>
+        Showing the Single task in detail
+    </h1>
+    <h1><%= task._id %></h1>
+    <h1><%= task.name %></h1>
+    <h1><%= task.description %></h1>
+    <h1><%= task.created_at %></h1>
+    <h1><%= task.deadline %></h1>
+
+    <form action="/tasks/<%= task._id %>?_method=DELETE" method="post">
+        <button>Delete Task</button>
+    </form>
+    <a href="/tasks/<%= task._id %>/edit">Edit</a>
+</body>
+</html>
