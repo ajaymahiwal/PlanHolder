@@ -3,39 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Signup</title>
+    <%- include("../include/head.ejs") %>
     <style>
-        form > button{
-            padding: .8rem 2rem;
-            border: none;
-            background-color: rgba(137, 43, 226, 0.5);
+        .main-form{
+            width: 80vw;
+            /* border: 2px solid red; */
+            margin: 6vw auto;
+            /* min-height: 100dvh; */
+        }
+        .form-title{
+            font-size: 4vw;
+            text-align: center;
+        }
+        form{
+            margin-top: 1vw;
+            /* border: 2px solid blue; */
+        }
+        form input{
+            width: 100%;
+            padding: 3px 0;
+            font-size: 1.2rem;
+        }
+        form > div{
+            margin-top: .7vw;
+        }
+        label{
+            font-size: 1.5rem;
         }
 
-        .error{
-            color: red;
+        form button{
+            display: block;
+            border: none;
+            margin: 1.5vw auto;
+            padding: .7rem 10%;
+            font-size: 1.3rem;
+            background-color: #06863e;
+            color: white;
+            border-radius: 3rem;
+        }
+        .account-yes-or-not{
+            text-align: center;
+        }
+        .ref-links{
+            color: #06863e;
+            font-weight: 500;
+            text-decoration: underline #06863e;
+        }
+        .plan-holder-yt-iframe{
+            margin: 2vw auto;
+            width: fit-content;
+        }
+        iframe{
+            border-radius: 10px;
+            width: 55vw;
+            height: 30vw;
+        }
+        .plan-holder-yt-iframe > div{
+            margin-top: 1vw;
+            text-align: center;
+        }
+        .plan-holder-yt-iframe a:nth-child(1){
+            padding-right: 5px;
+            border-right: 2px solid black;
+        }
+        .awards{
+            margin: 1vw auto;
+            display: flex;
+            flex-wrap: wrap;
+            width: 80vw;
+            gap: 1vw;
+            justify-content: center;
+        }
+        .awards div{
+            width: 15vw;
+            height: 15vw;
+            background-color: rgba(137, 43, 226, 0.459);
         }
     </style>
 </head>
 <body>
+    <%- include("../include/header.ejs") %>
 
     <% if (errorMsg && errorMsg.length) { %>
-     <h1 class="error"> <%=errorMsg %></h1>
-    <% } %>
-    <form action="/signup" method="post">
+        <p class="error-msg"> <%=errorMsg %></p>
+       <% } %>
+
+       <% if (currUser) { %>
+        <p class="success-msg">Great, You Are Logged In.</p>
+       <% } %>
+
+    <div class="main-form">
+        <h1 class="form-title">Happy Planning :)</h1>
+        <form action="/signup" method="post">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="email" name="user[name]" id="name" required>
+            </div>
+            <div>
+                <label for="username">Email:</label>
+                <input type="email" name="user[username]" id="username" required>
+            </div>
+            <div>
+                <label for="pass">Password:</label>
+                <input type="password" name="user[password]" id="pass" required>
+            </div>
+            <button>Sign Up</button>
+        </form>
+
+        <p class="account-yes-or-not">Already have a PlanHolder account ? <a href="/login" class="ref-links">Log in</a></p>
+    </div>
+
+    <div class="plan-holder-yt-iframe">
+        <iframe src="https://www.youtube.com/embed/Oxbde2OeBx4?si=AX5juvocI9JAlJXO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <div>
-            <label for="name">Name:</label>
-            <input type="text" name="user[name]" id="">
+            <a href="" class="ref-links">Watch more videos</a>
+            <a href="" class="ref-links">Getting Started</a>
         </div>
-        <div>
-            <label for="name">Email:</label>
-            <input type="email" name="user[username]" id="">
-        </div>
-        <div>
-            <label for="name">Password:</label>
-            <input type="password" name="user[password]" id="">
-        </div>
-        <button>SignUp</button>
-    </form>
+    </div>
+
+    <div class="awards">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <%- include("../include/footer") %>
 </body>
 </html>

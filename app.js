@@ -140,13 +140,13 @@ app.get("/logout",(req,res)=>{
 
 
 
-app.use("/tasks",(req,res,next)=>{
-    if(req.isAuthenticated()){
-        next();
-    }else{
-        res.redirect("/login");
-    }
-});
+// app.use("/tasks",(req,res,next)=>{
+//     if(req.isAuthenticated()){
+//         next();
+//     }else{
+//         res.redirect("/login");
+//     }
+// });
 
 //Task -  CRUD operations
 app.get("/tasks",async (req,res)=>{
@@ -187,7 +187,7 @@ app.put("/tasks/:id",async(req,res)=>{
 
     let newTask = await Task.findByIdAndUpdate(id,{...task},{new:true,runValidators: true});
     // await newTask.save();
-    console.log("old Task",newTask);
+    console.log("Updated Task",newTask);
 
     res.redirect(`/tasks/${id}`);
 })
