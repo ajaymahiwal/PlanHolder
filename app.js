@@ -115,7 +115,7 @@ app.get("/dashboard",(req,res,next)=>{
         res.redirect("/signup");
     }
 },(req,res)=>{
-    res.send("<h1>Hello bete kse ho !</h1>");
+    res.render("./main/dashboard"); 
 });
 
 app.get("/login",(req,res)=>{
@@ -124,6 +124,7 @@ app.get("/login",(req,res)=>{
 
 app.post("/login",passport.authenticate("local",{failureRedirect:"/login",failureFlash:true,successFlash:true}),(req,res)=>{
     console.log("login complete");
+    req.flash("success","Wow,You are logged in !");
     res.redirect("/dashboard");
 });
 
@@ -139,7 +140,7 @@ app.get("/logout",(req,res)=>{
 });
 
 
-
+//Uncomment it !!!!!
 // app.use("/tasks",(req,res,next)=>{
 //     if(req.isAuthenticated()){
 //         next();

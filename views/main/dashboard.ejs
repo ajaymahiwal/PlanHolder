@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="shortcut icon" href="/img/home-page/logo.png" type="image/x-icon">
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+
+        main{
+            display: flex;
+            width: 100%;
+            height: 100dvh;
+            border: 2px solid red;
+        }
+        main > div{
+            border: 2px solid white;
+        }
+
+        .overview{
+            width: 25vw;
+        }
+        .dashboard{
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <% if (successMsg && successMsg.length) { %>
+        <p class="success-msg">Welcome, <%= currUser.name %></p>
+    <% } %>
+
+    <main>
+        <div class="overview">
+            <div>
+                Dashboard and search options
+            </div>
+            <div>
+                Your list
+            </div>
+        </div>
+        <div class="dashboard">
+            <h1>Main Content of Dashboard</h1>
+        </div>
+    </main>
+</body>
+</html>
