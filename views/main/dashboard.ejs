@@ -1,52 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="shortcut icon" href="/img/home-page/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/common.css" />
+    <link
+      rel="shortcut icon"
+      href="/img/home-page/logo.png"
+      type="image/x-icon"
+    />
     <style>
-        body{
-            background-color: black;
-            color: white;
-        }
+      :root {
+        --top-options: 25dvh;
+        --all-list-options: 20dvh;
+        --main-bg: #121212;
+        --gap-bw: 0.8rem;
+        --border-radius: 0.8rem;
+      }
+      body {
+        background-color: black;
+        color: white;
+      }
 
-        main{
-            display: flex;
-            width: 100%;
-            height: 100dvh;
-            border: 2px solid red;
-        }
-        main > div{
-            border: 2px solid white;
-        }
+      main {
+        padding-top: var(--gap-bw);
+        display: flex;
+        gap: var(--gap-bw);
+        width: 100%;
+        border: 2px solid green;
+        height: 100dvh;
+        overflow: hidden;
+      }
+    
+     main > div{
+        width: 30%;
+     }
 
-        .overview{
-            width: 25vw;
-        }
-        .dashboard{
-            flex-grow: 1;
-        }
+      .overview {
+        flex-grow: 2;
+        /* border: 2px solid red; */
+        gap: var(--gap-bw);
+        display: flex;
+        flex-direction: column;
+      }
+
+
+      .top-options {
+        /* border: 2px solid red; */
+        background-color: var(--main-bg);
+        height: var(--top-options);
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        /* remove height after adding real element inside top-options */
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+      }
+      main svg{
+        width: 1.5rem;
+      }
+      .top-options a{
+        font-size: 1.3rem;
+        color: white;
+      }
+      .top-options div a{
+        display: flex;
+      }
+      .top-options input{
+        padding: 0;
+        width: 95%;
+        font-size: 1rem;
+        font-weight: 400;
+        padding:2px 0 2px 7px;
+        border-radius: .7rem;
+        border: none;
+      }
+      a > div{
+        margin-left: .5rem;
+      }
+      .top-options div{
+        display: flex;
+      }
+      .search-icon{
+        margin-inline: .5rem;
+        cursor: pointer;
+      }
+
+
+
+
+      .overview > div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+      }
+      .list-section {
+        padding: .5rem;
+        background-color: var(--main-bg);
+        border-radius: var(--border-radius);
+      }
+
+
+      
+
+      .all-list-options {
+        /* height: var(--all-list-options); */
+        border: 2px solid red;
+      }
+      
+      .all-list-options > div{
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      .all-list-options > div > div{
+        display: flex;
+        gap: .5rem;
+      }
+
+
+      
+      .list-options {
+        /* border: 2px solid green; */
+        overflow-y: scroll;
+        padding-bottom: 3rem !important;
+        /* height: calc(100dvh - calc(var(--top-options) + var(--all-list-options))); */
+      }
+      .list-options::-webkit-scrollbar {
+        width: 5px !important;
+      }
+      .list-options {
+        overflow: -moz-scrollbars-none;
+      }
+      .list-options {
+        -ms-overflow-style: none;
+      }
+      .list-options::-webkit-scrollbar-thumb {
+        background-color: white;
+      }
+
+
+
+
+      .dashboard {
+        background-color: var(--main-bg);
+        border-radius: var(--border-radius);
+        flex-grow: 1;
+        overflow-y: scroll;
+        width: 70%;
+      }
+      .dashboard::-webkit-scrollbar {
+        width: 5px !important;
+      }
+      .dashboard {
+        overflow: -moz-scrollbars-none;
+      }
+      .dashboard {
+        -ms-overflow-style: none;
+      }
+      .dashboard::-webkit-scrollbar-thumb {
+        background-color: white;
+      }
+
+      
     </style>
-</head>
-<body>
-    <% if (successMsg && successMsg.length) { %>
+  </head>
+  <body>
+    <!-- <% if (successMsg && successMsg.length) { %>
         <p class="success-msg">Welcome, <%= currUser.name %></p>
-    <% } %>
+    <% } %> -->
+    
+    <main id="main">
+      <div class="overview" id="overview-sec">
+        <div class="top-options">
+            <div><a href="/dashboard"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM11 13V19H13V13H11Z"></path></svg><div>Dashboard</div></a></div>
+            <div><input type="text" name="searching" id="" placeholder="Search Your List Or Task"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)" class="search-icon"><path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"></path></svg></div>
+        </div>
 
-    <main>
-        <div class="overview">
+        <div class="list-section">
+          <div class="all-list-options">
+            <!-- <h1>Hello Ji</h1> -->
             <div>
-                Dashboard and search options
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)"><path d="M8.00008 6V9H5.00008V6H8.00008ZM3.00008 4V11H10.0001V4H3.00008ZM13.0001 4H21.0001V6H13.0001V4ZM13.0001 11H21.0001V13H13.0001V11ZM13.0001 18H21.0001V20H13.0001V18ZM10.7072 16.2071L9.29297 14.7929L6.00008 18.0858L4.20718 16.2929L2.79297 17.7071L6.00008 20.9142L10.7072 16.2071Z"></path></svg>
+                    <div>Your List</div>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+                </div>
             </div>
-            <div>
-                Your list
+          </div>
+          <div class="list-options">
+            <div class="all-lists">
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
+                repellat tempore fugiat dolor cum ea nisi, accusantium,
+                doloremque quod ipsam voluptates.
+              </p>
             </div>
+          </div>
         </div>
-        <div class="dashboard">
-            <h1>Main Content of Dashboard</h1>
-        </div>
+      </div>
+      <div class="dashboard">
+        <h1>Main Content of Dashboard</h1>
+        maxime. Provident nam, rerum numquam eum dolorem mollitia consectetur aliquam similique? Laboriosam eius ad unde molestiae? Unde eligendi repellendus ducimus quod repudiandae molestias laboriosam? Assumenda vel aperiam adipisci, ut similique nemo corrupti hic qui atque ipsa ab distinctio, accusamus iste deserunt quam placeat rerum. Suscipit atque eligendi cum?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nam suscipit ex dolorem laborum expedita amet eaque nemo totam delectus. Libero optio eveniet vitae pariatur veniam temporibus. Neque maxime veniam deleniti eligendi odit? Temporibus voluptas repellat asperiores unde commodi sequi iure tempore eaque doloribus perferendis laudantium eveniet fuga molestias, porro ducimus illo. Corporis optio tempora aliquid odio. Iure doloribus dolorum, nam excepturi placeat, deserunt ducimus voluptates ratione eligendi aliquid amet tempore reprehenderit explicabo quibusdam ab tenetur sed perferendis nisi voluptas consectetur fugiat harum iusto ex sint! Iusto quas pariatur dolorem fugit, enim nulla laboriosam sunt nam magni aut quos ipsum, accusantium quaerat dolores. Quaerat ab facilis cupiditate impedit natus delectus laboriosam dolor voluptatibus architecto, incidunt nihil mollitia ipsum distinctio, animi fugit voluptatum eligendi numquam earum optio? Cumque fugit assumenda debitis molestiae et earum quisquam nihil voluptatum, est, unde voluptatibus vitae exercitationem deserunt dignissimos accusantium quas. Eaque laudantium blanditiis sequi nobis facere amet, repellendus minus corrupti molestiae libero eius esse unde molestias sunt doloremque accusamus, vel non repellat voluptate asperiores vitae? Architecto nihil animi ab nobis deserunt impedit eaque error dicta minima! Ut debitis quasi minima nemo, eveniet omnis culpa accusantium facilis est qui consequatur architecto beatae illum praesentium dicta error necessitatibus molestias pariatur delectus id voluptatem mollitia? Omnis dicta voluptatibus id saepe qui laboriosam sequi voluptatem nam minus autem sunt exercitationem deleniti quidem iure ullam necessitatibus nostrum, aliquid consectetur! Voluptatibus voluptates corrupti distinctio iure corporis? Earum voluptatibus maiores fugit nesciunt quas. Asperiores velit doloribus aliquid dolores. Ullam nobis consectetur unde velit eos similique hic doloremque rerum eaque vero, cupiditate exercitationem ea voluptatibus totam molestias recusandae, ex est quia reiciendis dolores cumque repudiandae possimus! Illum beatae iusto et id accusantium quas eius, cum est! Sint molestiae earum officiis illo doloremque nisi quisquam non ut! Labore, rem dicta. Similique cumque soluta, excepturi ea omnis possimus quia et ad exercitationem? Explicabo ab laboriosam facere earum reiciendis, aut enim autem, cum amet commodi distinctio asperiores iure architecto nisi animi quam repudiandae possimus! Modi, quia placeat quis dolore ipsam natus! Quasi ab soluta qui aut, totam sapiente autem in ipsam illum magnam, corrupti iusto voluptatem. Magni rerum est adipisci officiis, fugiat dolore doloribus minus accusamus ex esse quam iure qui rem atque quisquam totam laborum incidunt aliquid expedita provident? Ab voluptas, excepturi voluptatibus atque labore amet tempora inventore minima earum! Debitis suscipit sit aliquam et, animi quae similique ullam, itaque illum maiores fugiat voluptatibus nemo adipisci, necessitatibus quasi. Fugit nisi quaerat perspiciatis dignissimos omnis vitae harum, quia amet nemo consectetur aspernatur rerum quasi cupiditate aliquid porro sequi dolore tempora minus earum ea ipsum quidem saepe? Eligendi beatae tenetur impedit reprehenderit commodi, quisquam autem et dolores quo, repellendus, veritatis similique explicabo soluta nesciunt illo cumque necessitatibus cum aliquid excepturi aspernatur debitis. Similique omnis distinctio eaque dolores autem, repudiandae non doloremque vel libero esse quam temporibus, laudantium, iste fuga earum dolor magnam. Nemo reiciendis similique veritatis a ad! Nisi placeat ipsa earum, repellat fugit tempora itaque dolor recusandae minus ad aperiam id nam nihil quibusdam amet voluptatem sapiente hic incidunt voluptates in natus fugiat alias ab blanditiis? Nemo ratione obcaecati laboriosam nostrum aspernatur magnam voluptate mollitia earum beatae quis, amet autem deserunt quod corporis saepe, dicta architecto doloribus nulla ab impedit possimus sapiente id fuga odit! Aperiam ipsa quos atque modi. Temporibus numquam magni dolores quasi possimus quis aliquid ipsum, at autem mollitia facilis tenetur rerum debitis laudantium id qui animi cum. Deleniti, eligendi! Deserunt ipsa ex sapiente molestias consectetur quaerat recusandae pariatur nemo atque consequatur exercitationem, cum dicta. Vitae quo saepe animi quam, neque dolore eaque quaerat repellendus officia non fuga corporis dicta sequi reprehenderit necessitatibus quos ratione placeat ex vel at molestiae deserunt nulla, aliquam iste. Consequuntur atque illo in velit, nam incidunt alias. Consequuntur vero et non, nam libero iusto quia maiores fugit dolore provident atque perferendis illum obcaecati earum odit qui nisi eos omnis eum autem? Amet iste adipisci dolorem ad quam at quis, vero aspernatur facilis, accusamus, quia enim itaque odit sit in? Error animi est rerum dolorem illum ratione? Quia vero at autem cumque exercitationem sapiente ad necessitatibus, fugiat nisi alias rem quasi vitae molestiae quo officia eum, quidem nesciunt temporibus aperiam non id ex laborum. Tempore dolorum ipsum omnis, dolore reprehenderit reiciendis nam, numquam, odio distinctio nostrum neque dolorem repudiandae excepturi doloremque dicta aspernatur. Odio facilis eos exercitationem perspiciatis optio quaerat voluptas, expedita vero, amet atque itaque enim dolore odit totam ipsam. Numquam eveniet beatae maiores ratione, ipsum quisquam molestias placeat ea nemo neque temporibus enim asperiores, esse earum minima accusamus quas non sit. Deleniti velit veniam cumque ea totam eius atque officiis, sit sint accusamus maxime? Nesciunt quis corrupti deserunt aspernatur, eos nobis in numquam ab quia. Vitae, quas, aperiam repellendus omnis quae voluptas illum magni veniam doloremque animi dolorem, facilis deserunt nobis sunt harum ipsum? Cupiditate quod reprehenderit impedit amet debitis expedita qui vitae consequatur quibusdam commodi maiores rerum, accusantium dolorem natus nam veritatis temporibus architecto consequuntur consectetur modi quae nemo rem, explicabo provident. Pariatur, dicta quod accusantium facere blanditiis ab enim perspiciatis! Ratione accusantium, magni eaque, deserunt quasi quisquam sint consectetur tempora expedita modi non, beatae earum sed ad quibusdam tenetur ipsa dignissimos itaque cum veniam adipisci eum. Provident voluptatem sint porro, commodi repudiandae unde, nemo tempora possimus animi magnam eum temporibus minima eaque itaque aliquam quasi? Omnis assumenda illo laborum delectus harum quibusdam magnam consequuntur repellendus temporibus voluptatem ducimus facere iure distinctio mollitia nostrum, neque rerum sit asperiores maxime molestiae est quaerat aliquid! Animi necessitatibus vero eaque assumenda officiis! Non porro recusandae nobis, laboriosam saepe ipsam perspiciatis ullam eveniet quod impedit praesentium consequatur ex sapiente illum, magni consequuntur autem quasi esse tenetur iure ut quidem in. Ea explicabo dolorem blanditiis, dolorum odio saepe? Officiis praesentium totam cupiditate nam dolorem dolores, labore aspernatur. Molestias cum, impedit quibusdam nobis itaque sit consequuntur eaque minima unde vel ex enim, obcaecati illo possimus quasi maiores accusantium facere natus! Officiis animi repudiandae illo blanditiis. Architecto doloremque maiores, at accusantium doloribus exercitationem voluptates excepturi, perferendis, aliquam voluptatem molestias provident voluptatibus obcaecati illo?
+        maxime. Provident 
+      </div>
     </main>
-</body>
+
+    <script defer>
+      const topOptions = document.querySelector(".top-options");
+      console.log(topOptions);
+      const allListOptions = document.querySelector(".all-list-options");
+      console.log(allListOptions);
+      const listOptions = document.querySelector(".list-options");
+      console.log(listOptions);
+      const totalHeight = window.innerHeight;
+
+      let removalHeight = topOptions.offsetHeight + allListOptions.offsetHeight;
+      console.log(removalHeight);
+
+      listOptions.style.height = totalHeight - removalHeight + "px";
+    </script>
+  </body>
 </html>
