@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= currUser.name.toUpperCase() %>'s Profile</title>
+    <%- include("../include/head") %>
+
+    <style>
+      main {
+        margin-block: 2rem;
+        padding-left: 6%;
+        padding-right: 6%;
+        padding-bottom: 20%;
+        min-height: 80dvh;
+      }
+      .sec {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+      .user-img {
+        border: 2px solid black;
+        height: 9vw;
+        width: 9vw;
+        border-radius: 7vw;
+        text-align: center;
+        object-fit: contain;
+      }
+      #sec-1 {
+        padding-top: .5rem;
+        border: 2px solid #00a34d;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        row-gap: 1rem;
+      }
+      /* #sec-1 > div {
+        border: 2px solid blue;
+      } */
+      .user-info {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .user-name {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #00a34d;
+      }
+      .user-bio {
+        padding: 1rem;
+        width: 80%;
+        min-height: inherit;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      /* Section-2 */
+      #sec-2 nav ul {
+        display: flex;
+        overflow-x: auto;
+        /* flex-wrap: wrap; */
+        column-gap: 2rem;
+        row-gap: 1rem;
+        padding: 1rem;
+      }
+      #nav-links::-webkit-scrollbar {
+        width: 3px !important;
+        height: 3px !important;
+    }
+
+    #nav-links {
+        overflow: -moz-scrollbars-none;
+    }
+
+    #nav-links {
+        -ms-overflow-style: none;
+    }
+
+    #nav-links::-webkit-scrollbar-thumb {
+        background-color: black;
+        border-radius:4px;
+    }
+
+      #sec-2 nav ul li {
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 5px 1.5rem;
+        text-wrap: nowrap;
+      }
+      .option-result {
+        width: 100%;
+        /* border: 2px solid green; */
+        min-height: 30vw;
+      }
+      .option-result > div {
+        min-height: 10vw;
+      }
+      
+      .active {
+        background-color: #00a34d;
+        color: white;
+        border-radius: 1rem;
+        height: fit-content;
+      }
+
+      .all-task {
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content:space-around;
+        padding: 0.5rem 1rem;
+      }
+      .all-task > div {
+        border: 2px solid #00a34d;
+        padding: 1vw;
+        width: 31%;
+        /* height: fit-content; */
+      }
+      .all-task > div > h3 {
+        text-transform: capitalize;
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      .show-in-detail {
+        display: block;
+        margin-top: 1vw;
+        text-decoration: underline 2px #00a34d;
+        font-weight: 500;
+      }
+
+
+      .hide {
+        display: none;
+      }
+
+
+      @media(width<=800px){
+        .all-task > div {
+        border: 2px solid #00a34d;
+        padding: 1vw;
+        width: 48%;
+        /* height: fit-content; */
+      }
+      .user-img {
+        border: 2px solid black;
+        height: 15vw;
+        width: 15vw;
+        border-radius: 15vw;
+      }
+      #sec-2 nav ul {
+        padding: 5px;
+      }
+      }
+
+
+      @media(width<=650px){
+        .user-img {
+        border: 2px solid black;
+        height: 15vw;
+        width: 15vw;
+        border-radius: 15vw;
+      }
+      html{
+        font-size: 14px;
+      }
+      }
+
+
+      @media(width<=550px){
+        .all-task > div {
+        border: 2px solid #00a34d;
+        padding: 1vw;
+        width: 98%;
+        /* height: fit-content; */
+      }
+      .user-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .user-img {
+        border: 2px solid black;
+        height: 20vw;
+        width: 20vw;
+        border-radius: 15vw;
+      }
+      .user-name {
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: #00a34d;
+      }
+      .user-bio {
+        padding: 1rem;
+        width: 100%;
+        min-height: 10rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+      .green-btn-adv{
+        padding: .2rem 2rem;
+        font-size: 1,2rem;
+      }
+      }
+
+      @media (width<=400px) {
+        .user-img {
+        border: 2px solid black;
+        height: 24vw;
+        width: 24vw;
+        border-radius: 15vw;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("../include/simple-header") %> <%-
+    include("../include/flash-msg.ejs") %>
+
+
+    <main>
+      <section class="sec" id="sec-1">
+        <div class="user-info">
+          <img src="<%= currUser.image %>" alt="Error due to some issue profile photo is not visible,Please Reload" class="user-img">
+          <!-- <div class="user-img"></div> -->
+          <h2 class="user-name txt-cap"><%= currUser.name %></h2>
+        </div>
+        <div class="user-bio">
+          <% if (currUser.bio && currUser.bio.length) { %>
+          <p><%= currUser.bio %></p>
+          <% } else{%>
+          <p>Hello <%= currUser.name %>👋, Write Your Bio Here 👀</p>
+          <% } %>
+        </div>
+        <a href="/user/profile/<%= currUser._id %>/edit" class="green-btn-adv">Edit Profile</a>
+      </section>
+      <section class="sec" id="sec-2">
+        <nav>
+          <ul id="nav-links">
+            <li class="active" id="0">Tasks</li>
+            <li id="1">Completed Tasks</li>
+            <li id="2">Uncomplete Tasks</li>
+            <li id="3">Upcoming Tasks</li>
+            <li id="4">Lists</li>
+          </ul>
+        </nav>
+        <div class="option-result" id="option-result-par">
+          <div class="all-task">
+            <% if (currUser.tasks && currUser.tasks.length) { %> 
+            <%allTask.forEach(task => { %>
+            <div>
+              <h3><%= task.name %></h3>
+              <a
+                href="/tasks/<%= task._id %>"
+                target="_blank"
+                class="show-in-detail"
+                >Show In Detail</a
+              >
+            </div>
+            <% }) %> 
+            <% } else{%>
+              <!-- use image like github, no issue section mein vala image vo cartoon and fox -->
+              <div>
+                <h3>
+                  No Result Found !
+                </h3>
+              </div>
+            <% } %>
+          </div>
+          <div class="all-task completed-task hide">
+            <% if (currUser.tasks && currUser.tasks.length && completedTask && completedTask.length) { %> 
+              <%completedTask.forEach(task => { %>
+              <div>
+                <h3><%= task.name %></h3>
+                <a
+                  href="/tasks/<%= task._id %>"
+                  target="_blank"
+                  class="show-in-detail"
+                  >Show In Detail</a
+                >
+              </div>
+              <% }) %> 
+              <% } else{%>
+                <!-- use image like github, no issue section mein vala image vo cartoon and fox -->
+                <div>
+                  <h3>
+                    No Result Found !
+                  </h3>
+                </div>
+              <% } %>
+          </div>
+          <div class="all-task uncompleted-task hide">
+            <% if (currUser.tasks && currUser.tasks.length && uncompletedTask && uncompletedTask.length) { %> 
+              <%uncompletedTask.forEach(task => { %>
+              <div>
+                <h3><%= task.name %></h3>
+                <a
+                  href="/tasks/<%= task._id %>"
+                  target="_blank"
+                  class="show-in-detail"
+                  >Show In Detail</a
+                >
+              </div>
+              <% }) %> 
+              <% } else{%>
+                <!-- use image like github, no issue section mein vala image vo cartoon and fox -->
+                <div>
+                  <h3>
+                    No Result Found !
+                  </h3>
+                </div>
+              <% } %>
+          </div>
+          <div class="all-task upcoming-task hide">
+            <% if (currUser.tasks && currUser.tasks.length && upcomingTask && upcomingTask.length) { %> 
+              <%upcomingTask.forEach(task => { %>
+              <div>
+                <h3><%= task.name %></h3>
+                <a
+                  href="/tasks/<%= task._id %>"
+                  target="_blank"
+                  class="show-in-detail"
+                  >Show In Detail</a
+                >
+              </div>
+              <% }) %> 
+              <% } else{%>
+                <!-- use image like github, no issue section mein vala image vo cartoon and fox -->
+                <div>
+                  <h3>
+                    No Result Found !
+                  </h3>
+                </div>
+              <% } %>
+          </div>
+          <div class="all-task lists hide">
+            <% if (currUser.lists && currUser.lists.length) { %> 
+              <%currUser.lists.forEach(list => { %>
+              <div>
+                <h3><%= list %></h3>
+                <a
+                  href="/lists/edit?listName=<%= list %>"
+                  target="_blank"
+                  class="show-in-detail"
+                  >Get More Info</a
+                >
+              </div>
+              <% }) %> 
+              <% } else{%>
+                <!-- use image like github, no issue section mein vala image vo cartoon and fox -->
+                <div>
+                  <h3>
+                    No Result Found !
+                  </h3>
+                </div>
+              <% } %>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--  <%- include("../include/footer") %> -->
+
+
+    <script>
+        let navLinks = document.getElementById("nav-links");
+        let optionResult = document.getElementById("option-result-par");
+      console.dir(navLinks);
+
+        navLinks.addEventListener('click',(e)=>{
+            // console.log(e.target.nodeName)
+
+            if((!e.target.classList.contains("active")) && (e.target.nodeName == 'LI')){
+              let idx = e.target.getAttribute("id");
+              // console.log(idx);
+              for(let i=0;i<navLinks.children.length;i++){
+                if(i == idx){
+                  navLinks.children[i].classList.add("active");
+                }else{
+                  navLinks.children[i].classList.remove("active");
+                }
+              }
+
+              for(let i=0;i<optionResult.children.length;i++){
+                if(i == idx){
+                  optionResult.children[i].classList.remove("hide");
+                }else{
+                  if(!optionResult.children[i].classList.contains("hide")){
+                    optionResult.children[i].classList.add("hide");
+                  }
+                }
+              }
+            }
+        })
+    </script>
+  </body>
+</html>

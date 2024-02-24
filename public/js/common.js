@@ -1,29 +1,40 @@
 
 
-const dropBtn_1 = document.getElementById("drop-btn-1");
+const dropBtn_1 = document.getElementsByClassName("drop-btn-1");
 const dropSection_1 = document.querySelector(".drop-out-1");
+// console.log(dropBtn_1);
 
-dropBtn_1.addEventListener('click',(event)=>{
-    
-    if(!dropSection_2.classList.contains("dropout-unactive")){
-        dropSection_2.classList.add("dropout-unactive");
-    }
-    dropSection_1.classList.toggle("dropout-unactive");
-});
+for(let i=0;i<dropBtn_1.length;i++){
+    dropBtn_1[i].addEventListener('click',(event)=>{
+        // console.log(event.target);
+        if(!dropSection_2.classList.contains("dropout-unactive")){
+            dropSection_2.classList.add("dropout-unactive");
+        }
+        dropSection_1.classList.toggle("dropout-unactive");
+    });
+}
 
 
-const dropBtn_2 = document.getElementById("drop-btn-2");
+const dropBtn_2 = document.getElementsByClassName("drop-btn-2");
 const dropSection_2 = document.querySelector(".drop-out-2");
+// console.log(dropBtn_2);
 
-dropBtn_2.addEventListener('click',(event)=>{
+for(let i=0;i<dropBtn_2.length;i++){
+    dropBtn_2[i].addEventListener('click',(event)=>{
+        // console.log(event.target);
+        if(!dropSection_1.classList.contains("dropout-unactive")){
+            dropSection_1.classList.add("dropout-unactive");
+        }
+        dropSection_2.classList.toggle("dropout-unactive");
+         
+    });
+}
 
-    if(!dropSection_1.classList.contains("dropout-unactive")){
-        dropSection_1.classList.add("dropout-unactive");
-    }
-    dropSection_2.classList.toggle("dropout-unactive");
-    
-    
-});
+
+// window.addEventListener('click',(e)=>{
+//     console.log(e.target);
+// })
 
 
 
+//for respo header

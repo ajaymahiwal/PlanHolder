@@ -15,6 +15,18 @@ const taskSchema = new mongoose.Schema({
     },
     deadline:{
         type:Date,
+    },
+    list:[
+        {
+            type:String,
+        }
+    ],
+    created_by:{
+        type:String,
+    },
+    completed:{
+        type:Boolean,
+        default:false,
     }
 });
 

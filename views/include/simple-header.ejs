@@ -1,0 +1,86 @@
+
+
+
+<header id="responsive-header">
+    <div class="top-header">
+      <nav>
+        <ul class="ul-1">
+          <li>
+            <a href="/" id="main-logo">
+              <img src="/img/home-page/logo.png" alt="logo" class="logo" />
+              <span class="logo-name">PlanHolder</span>
+            </a>
+          </li>
+          <li>
+          <li>
+            <h1 class="hamburger-menu"><i class="ri-menu-line"></i></h1>
+          </li>
+      </nav>
+    </div>
+  </header >
+
+
+   <header class="common-header">
+    <nav>
+      <ul class="ul-1">
+        <li>
+          <a href="/" id="main-logo">
+            <img src="/img/home-page/logo.png" alt="logo" class="logo" />
+            <span class="logo-name">PlanHolder</span>
+          </a>
+        </li>
+        <!-- <li>
+          <button href="" class="drop-btn drop-btn-1" >Why PlanHolder <i class="ri-arrow-down-s-fill"></i></button>
+        </li>
+        <li>
+          <button href="" class="drop-btn drop-btn-2">Features <i class="ri-arrow-down-s-fill"></i></button>
+        </li> -->
+
+      </ul>
+      <ul>
+        <% if (!currUser) { %>
+          <li><a href="/login">Login</a></li>
+          <% } else { %>
+            <li><a href="/dashboard" class="dashboard-link">Dashboard</a></li>
+            <li>
+              <a href="/user/profile/<%= currUser._id %>" id="main-logo">
+                <!-- <img src="/img/home-page/logo.png" alt="logo" class="logo" /> -->
+                <i class="ri-user-fill logo"></i>
+              </a>
+            </li>
+         <% } %>
+    </ul>
+    </nav>
+  </header>
+
+
+  <div class="empty-for-header"></div>
+
+<div class="bottom-header hide" id="bottom-header-options">
+    <div>
+      <!-- <ul class="ul-1">
+        <li>
+          <button href="" class="drop-btn drop-btn-1">Why PlanHolder <i class="ri-arrow-down-s-fill"></i></button>
+        </li>
+        <li>
+          <button href="" class="drop-btn drop-btn-2">Features <i class="ri-arrow-down-s-fill"></i></button>
+        </li> 
+      </ul> -->
+      <ul>
+          <% if (!currUser) { %>
+            <li class=""><a href="/login" class="green-btn-adv">Login</a></li>
+            <% } else { %>
+              <li class=""><a href="/dashboard" class="dashboard-link green-btn-adv" id="header-dashboard-btn">Dashboard</a></li>
+              <li>
+                <a href="/user/profile/<%= currUser._id %>" id="main-logo">
+                  <span class="header-user-name"><%= currUser.name %></span>
+                  <!-- <img src="/img/home-page/logo.png" alt="logo" class="logo" /> -->
+                  <!-- <div class="logo"><i class="ri-user-fill"></i></div> -->
+                  <i class="ri-user-fill logo"></i>
+                </a>
+              </li> 
+           <% } %>
+      </ul>
+    </nav>
+  </div>
+</div>

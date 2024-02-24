@@ -5,3 +5,9 @@
 
 <%- include("../include/head.ejs")%>
 <%- include("../include/header.ejs")%>
+
+
+<a href="/user/<%= currUser._id %>/delete/account">Delete User Account</a>
+
+
+

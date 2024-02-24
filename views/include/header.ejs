@@ -1,34 +1,83 @@
-<header>
+<header id="responsive-header">
+  <div class="top-header">
     <nav>
       <ul class="ul-1">
         <li>
           <a href="/" id="main-logo">
-            <img src="./img/home-page/logo.png" alt="logo" class="logo" />
+            <img src="/img/home-page/logo.png" alt="logo" class="logo" />
             <span class="logo-name">PlanHolder</span>
           </a>
         </li>
         <li>
-          <button href="" class="drop-btn" id="drop-btn-1">Why PlanHolder <i class="ri-arrow-down-s-fill"></i></button>
+        <li>
+          <h1 class="hamburger-menu"><i class="ri-menu-line"></i></h1>
+        </li>
+    </nav>
+  </div>
+</header >
+
+
+
+<header class="common-header">
+    <nav>
+      <ul class="ul-1">
+        <li>
+          <a href="/" id="main-logo">
+            <img src="/img/home-page/logo.png" alt="logo" class="logo" />
+            <span class="logo-name">PlanHolder</span>
+          </a>
         </li>
         <li>
-          <button href="" class="drop-btn" id="drop-btn-2">Features <i class="ri-arrow-down-s-fill"></i></button>
+          <button href="" class="drop-btn drop-btn-1" id="why-planholder">Why PlanHolder <i class="ri-arrow-down-s-fill"></i></button>
         </li>
         <li>
-          <a href="">Pricing</a>
+          <button href="" class="drop-btn drop-btn-2">Features <i class="ri-arrow-down-s-fill"></i></button>
+        </li>
+        <li>
+          <!-- <a href="">Pricing</a> -->
         </li>
       </ul>
       <ul>
           <% if (!currUser) { %>
-            <li><a href="/login">Login</a></li>
+            <li class="start-plan"><a href="/login">Login</a></li>
             <% } else { %>
-              <li><a href="/logout">Logout</a></li>
+              <li class="start-plan"><a href="/dashboard" class="dashboard-link">Dashboard</a></li>
            <% } %>
-        <li><a href="/plans" class="book-plan">Book a demo</a></li>
-        <li><a href="/start-trial" class="start-plan">Start your free trial</a></li>
+        <!-- <li><a href="/plans" class="book-plan">Book a demo</a></li> -->
+        <!-- <li><a href="/start-trial" class="start-plan">Start your free trial</a></li> -->
       </ul>
     </nav>
   </header>
+
+
   <div class="empty-for-header"></div>
+
+<div class="bottom-header hide" id="bottom-header-options">
+    <div>
+      <ul class="ul-1">
+        <li>
+          <button href="" class="drop-btn drop-btn-1" id="">Why PlanHolder <i class="ri-arrow-down-s-fill"></i></button>
+        </li>
+        <li>
+          <button href="" class="drop-btn drop-btn-2">Features <i class="ri-arrow-down-s-fill"></i></button>
+        </li>
+        <!-- <li>
+          <a href="">Pricing</a>
+        </li> -->
+      </ul>
+      <ul>
+          <% if (!currUser) { %>
+            <li class=""><a href="/login" class="green-btn-adv">Login</a></li>
+            <% } else { %>
+              <li class=""><a href="/dashboard" class="dashboard-link green-btn-adv">Dashboard</a></li>
+           <% } %>
+        <!-- <li><a href="/plans" class="book-plan">Book a demo</a></li> -->
+        <!-- <li><a href="/start-trial" class="start-plan">Start your free trial</a></li> -->
+      </ul>
+    </nav>
+  </div>
+</div>
+
   <div class="drop-out-1 dropout-unactive">
     <div class="drop-out-par">
       <div id="drop-sec-1">
@@ -160,13 +209,6 @@
             <div><i class="ri-shut-down-fill"></i></div>
             <div>
               <h4>ftf</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem deleniti</p>
-            </div>
-          </div>
-          <div>
-            <div><i class="ri-shut-down-fill"></i></div>
-            <div>
-              <h4>ABc</h4>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem deleniti</p>
             </div>
           </div>

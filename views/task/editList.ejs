@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit List: <%= listName.toUpperCase() %></title>
+    <%- include("../include/head") %>
+    <style>
+
+      main {
+        margin-block: 3vw;
+        padding-inline: 6%;
+        min-height: 80dvh;
+      }
+
+      form > div {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+        padding: 5px 3px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0.322);
+      }
+      label {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+      input[type="checkbox"] {
+        width: fit-content;
+      }
+      
+      
+      .green-btn {
+        display: block;
+        margin: 1rem auto 2rem;
+        border: none;
+        border-radius: 3rem;
+        padding: 0.5rem 4rem;
+        color: white;
+        font-size: 1.3rem;
+        background-color: #00a34d;
+      }
+
+      .sec{
+        margin-top: 2rem;
+        margin-bottom: 3.5rem;
+      }
+
+      .list-tasks{
+        margin-top: 1vw;
+        border: 2px solid #00a34d;
+        padding: 0 2vw;
+      }
+      .list-tasks > h2{
+        margin-top: 1vw;
+      }
+      .all-tasks {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 3vw;
+        column-gap: 1.5vw;
+        padding: 1vw;
+        
+      }
+      .single-task{
+        padding: .5vw 1vw;
+        display: flex;
+        /* flex-wrap: wrap; */
+        gap: 2vw;
+        align-items: baseline;
+        border: 2px solid black;
+      }
+      .tasks-name {
+        text-transform: capitalize;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      .del-btn{
+        background-color: rgba(255, 0, 0, 0.89);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+      .msg-for-list {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+      
+      .main-title{
+        border: none;
+        text-decoration: underline 2px #00a34d;
+      }
+      .added-tasks,.not-added-tasks{
+        margin-bottom: 2rem;
+      }
+
+
+      @media(width<=650px){
+        .green-btn {
+        padding: 0.5rem 3rem;
+        font-size: 1.3rem;
+      }
+      .main-title{
+        font-size: 2.1rem;
+      }
+      .tasks-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      }
+      @media(width<=550px){
+        .green-btn {
+        padding: 0.5rem 2rem;
+        font-size: 1.1rem;
+      }
+      .main-title{
+        font-size: 1.9rem;
+      }
+      .msg-for-list {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      }
+      @media(width<=350px){
+        .green-btn {
+        padding: 0.3rem 2rem;
+        font-size: 1rem;
+      }
+      .main-title{
+        font-size: 1.7rem;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("../include/simple-header") %> 
+    <%- include("../include/flash-msg.ejs") %>
+
+    <main>
+      
+      <section class="sec" id="sec-1">
+        <h1 class="main-title">
+          Edit Your List : <span class="txt-cap imp-txt"><%= listName %></span>
+        </h1>
+        <form action="/lists/edit/name?_method=PUT" method="post">
+          <div>
+            <label for="list-name">Enter New List Name</label>
+            <input
+              type="text"
+              name="newListName"
+              id="list-name"
+              class="txt-cap"
+              value="<%=listName%>"
+              required
+            />
+            <input
+              type="text"
+              name="oldListName"
+              id=""
+              value="<%=listName%>"
+              style="display: none"
+            />
+          </div>
+          <button class="green-btn">Change List Name</button>
+        </form>
+      </section>
+
+      <section class="sec" id="sec-2">
+        <h1 class="main-title">
+          Add Or Remove Tasks Of <span class="txt-cap imp-txt"><%= listName %></span> List
+        </h1>
+
+        <div class="added-tasks list-tasks">
+          <h2>Selected Tasks</h2>
+        <div>
+          <% if (taskListName.length > 0) { %>
+          <p class="msg-for-list">
+            Note: Selected tasks are already present in Your List,
+            <span class="txt-cap imp-txt"><%= listName %></span>.
+          </p>
+          <% } else{%>
+          <p class="msg-for-list">
+            Note: You Don't have any tasks present this Your List,
+            <span class="txt-cap imp-txt"><%= listName %></span>.
+          </p>
+          <% } %>
+
+          <!-- ALL Tasks With that list name -->
+          <div class="all-tasks">
+            <% for( let i = 0; i < user.tasks.length; i++ ) { %> 
+            <%if(taskListName.includes(user.tasks[i].name)) { %>
+            <div class="single-task">
+              <div class="tasks-name txt-cap"><%= user.tasks[i].name %></div>
+              <form action="/lists/edit/<%=listName%>/tasks/<%= user.tasks[i]._id %>?_method=DELETE" method="post">
+                <button class="del-btn">Delete</button>
+              </form>
+            </div>
+            <% } %> 
+            <% } %>
+          </div>
+        </div>
+        </div>
+
+        <!-- All tasks which are not in this list          -->
+        <div class="not-added-tasks list-tasks">
+        <% if (taskListName.length != user.tasks.length) { %>
+          <h2>Your Other Tasks</h2>
+            <p class="msg-for-list">
+              Note: These tasks are not present in Your List,
+              <span class="txt-cap imp-txt"><%= listName %></span>
+              So,You can add them in list.
+            </p>
+        <form action="/lists/edit/tasks/new?_method=PUT&listName=<%= listName %>" method="post">
+            <div class="all-tasks">
+              <% for( let i = 0; i < user.tasks.length; i++ ) { %>
+              <%if(!taskListName.includes(user.tasks[i].name)) { %>
+              <div class="single-task">
+                <label for="<%= user.tasks[i]._id%>" class="txt-cap tasks-name">
+                  <%= user.tasks[i].name %>
+                </label>
+                <input
+                  type="checkbox"
+                  name="taskData[<%=i%>]"
+                  id="<%= user.tasks[i]._id %>"
+                  value="<%=user.tasks[i]._id%>"
+                />
+              </div>
+              <% } %> <% } %>
+            </div>
+          <button class="green-btn">Add Selected Tasks</button>
+        </form>
+        <% } %>
+
+        <% if (taskListName.length == user.tasks.length) { %>
+        <p class="msg-for-list">Note: All Created tasks are present in <span class="txt-cap imp-txt"><%= listName %></span> list.</p>
+        <% } %>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../include/footer.ejs") %>
+  </body>
+</html>

@@ -3,26 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New</title>
+    <title>Create a new task</title>
+    <%- include("../include/head") %>
+    <style>
+        main {
+        margin-top: 3vw;
+        margin-bottom: 10vw;
+        padding-inline: 10%;
+        min-height: 80dvh;
+      }
+
+      form > div {
+        margin-top: 1rem;
+        width: 100%;
+      }
+      input,textarea{
+        width: 100%;
+        padding: 5px 3px;
+        border-radius: 5px;
+        border: 2px solid rgba(0, 0, 0, 0.322);
+        font-size: 1.1rem;
+      }
+      label {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+      input[type="checkbox"] {
+        width: fit-content;
+      }
+      .task-des{
+        display: block;
+      }
+      
+      .green-btn {
+        display: block;
+        margin: 2rem auto 5rem;
+        border: none;
+        border-radius: 3rem;
+        padding: 0.5rem 4rem;
+        color: white;
+        font-size: 1.3rem;
+        background-color: #00a34d;
+      }
+      .all-lists {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 3vw;
+        column-gap: 1.5vw;
+        padding: 1vw;
+        margin-top: 3px;
+      }
+      .single-list{
+        padding: .5vw 1vw;
+        display: flex;
+        gap: 1vw;
+        align-items: baseline;
+        border: 2px solid black;
+      }
+      .main-title{
+            border-bottom: 2px solid #00a34d;
+        }
+      
+
+      @media(width<=450px){
+        .green-btn {
+        padding: 0.5rem 2rem;
+        font-size: 1.3rem;
+      }
+      .main-title{
+        font-size: 1.6rem;
+      }
+      label {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+      input,textarea{
+        font-size: 1rem;
+        padding: 2px;
+      }
+      }
+
+      
+    </style>
+    
 </head>
 <body>
-    <h1>New task</h1>
+    <%- include("../include/simple-header") %>
+    <%- include("../include/flash-msg.ejs") %>
 
-    <form action="/tasks/new" method="post">
-        <div>
-            <label for="">Task Name</label>
-            <input type="text" name="task[name]" id="">
-        </div>
-        <div>
-            <label for="">Task description</label>
-            <textarea name="task[description]" id="" cols="30" rows="10"></textarea>
-        </div>
-        <div>
-            <label for="">Task Deadline</label>
-            <input type="date" name="task[deadline]" id="">
-        </div>
-        <button>Save new Task</button>
+    <main>
+        <section class="sec" id="sec-1">
+            <h1 class="main-title">Create New Task</h1>
 
-    </form>
+            <form action="/tasks/new" method="post">
+                <div>
+                    <label for="">Task Name</label>
+                    <input type="text" name="task[name]" id=""  required>
+                </div>
+                <div>
+                    <label for="" class="task-des">Task description</label>
+                    <textarea name="task[description]" id="" cols="30" rows="10" required></textarea>
+                </div>
+                <div>
+                    <label for="">Task Deadline</label>
+                    <input type="date" name="task[deadline]" id="" required>
+                </div>
+                <div>
+                    <label for="" class="imp-txt">Select List Name For Task, if you want to choose :)</label>
+                    <div class="all-lists">
+                        <% for( let i = 0; i < currUser.lists.length; i++ ) { %>
+                                <div class="single-list">
+                                    <label for="<%= i %>" class="txt-cap"><%= currUser.lists[i] %></label>
+                                <input type="checkbox" name="listData[<%= i %>]" id="<%= i %>" value="<%= currUser.lists[i] %>">
+                                </div>
+                        <% } %>
+                    </div>
+        
+                </div>
+                <button class="green-btn">Create New Task</button>
+            </form>
+        
+        </section>
+    </main>
+
+
+    <%- include("../include/footer.ejs") %>
 </body>
 </html>

@@ -14,7 +14,10 @@
       :root {
         --top-options: 25dvh;
         --all-list-options: 20dvh;
-        --main-bg: #121212;
+        --main-bg: #1f1e1e;
+        /* --main-bg: #121212;  Main BG-Color */
+        /* --main-bg: #3f6d04; */
+        /* --main-bg: #376403; */
         --gap-bw: 0.8rem;
         --border-radius: 0.8rem;
       }
@@ -22,7 +25,9 @@
         background-color: black;
         color: white;
       }
-
+      body a {
+        color: white;
+      }
       main {
         padding-top: var(--gap-bw);
         display: flex;
@@ -34,7 +39,7 @@
       }
 
       main > div {
-        width: 30%;
+        width: 25%;
       }
 
       .overview {
@@ -48,8 +53,8 @@
       .top-options {
         /* border: 2px solid red; */
         background-color: var(--main-bg);
-        height: var(--top-options);
-        padding: 1rem;
+        /* height: var(--top-options); */
+        padding:2rem 1rem;
         border-radius: var(--border-radius);
         /* remove height after adding real element inside top-options */
 
@@ -57,6 +62,7 @@
         flex-direction: column;
         justify-content: center;
         gap: 1rem;
+        /* margin-bottom: 1vw; */
       }
       main svg {
         width: 1.5rem;
@@ -163,36 +169,160 @@
       .dashboard::-webkit-scrollbar-thumb {
         background-color: white;
       }
+
+      .list {
+        display: flex;
+        /* border: 2px solid red; */
+        align-items: center;
+        gap: 1vw;
+        cursor: pointer;
+
+      }
+      .list:hover {
+        background-color: #181818;
+      }
+      .list img {
+        width: 3vw;
+      }
+      .list > div {
+        font-size: 1.2rem;
+        text-transform: capitalize;
+      }
+      
+      .list-name-and-more{
+        width: 100%;
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .list-name-and-more > div:nth-child(2){
+        margin-right: 1vw;
+      }
+      .imp-list-sec {
+        margin-top: 1vw;
+      }
+      #list-content {
+        display: flex;
+        flex-direction: column;
+        padding: 2vw;
+        gap: 2vw;
+      }
+      
+      #listing-data {
+        padding-left: 2vw;
+      }
+      #listing-data > a {
+        display: block;
+        /* border: 2px solid white; */
+        margin-bottom: 3vw;
+      }
+      #listing-data p {
+        cursor: default;
+      }
+      .list-title-name{
+        text-transform: capitalize;
+      }
+
+      .dashboard-top {
+        padding: 2vw;
+      }
+      .dashboard-top > h1 {
+        text-decoration: underline 2px double white;
+        margin-bottom: 1vw;
+      }
+      .imp-dashB-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2vw;
+        padding-left: 2vw;
+      }
+      .imp-dashB-links ul li {
+        border: 2px solid white;
+        border-radius: 10px;
+        padding: 0.5vw 4vw;
+        font-size: 1.2rem;
+        transition: all 1s;
+      }
+      .imp-dashB-links ul li:hover {
+        background-color: #312d2d96;
+      }
+      .lists-tip {
+        text-transform: capitalize;
+      }
+      .width-increase {
+        width: 50%;
+      }
+      /* .search-icon:active{
+        width: 25vw;
+      } */
+      .list-crud-op{
+        padding: 1.2vw 1.5vw;
+      }
+      .list-crud-box{
+        border: 2px solid white;
+        border-radius: 5px;
+        display: none;
+        margin: 1vw 2vw;
+      }
+      .list-crud-box button{
+        display: inline-block;
+        background-color: inherit;
+        width: 100%;
+        text-align: left;
+        color: white;
+        margin-bottom: 5px;
+      }
+      .list-crud-box button:hover{
+        background-color: #222222;
+      }
+
+      .show-me{
+        padding: 1vw;
+        display: flex !important;
+        gap: .6vw;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+      }
+      .reload-btn{
+        background-color: white;
+        border: none;
+        padding: .4rem 1.2rem;
+        font-size: 1.1rem;
+        border-radius: 5px;
+      }
     </style>
+    <link rel="stylesheet" href="/css/dashboard-respo.css">
   </head>
   <body>
-    <!-- <% if (successMsg && successMsg.length) { %>
-        <p class="success-msg">Welcome, <%= currUser.name %></p>
-    <% } %> -->
+   
+    <% if (errorMsg && errorMsg.length) { %>
+      <p class="error-msg"><%= errorMsg %> <button class="reload-btn">Reload Page</button></p>
+      <% } %>
+      <div class="reload-btn" style="display: none;">ye add ker rha hu element kyuki -> To Remove the console error reading null</div>
 
     <main id="main">
       <div class="overview" id="overview-sec">
         <div class="top-options">
           <div>
-            <a href="/dashboard"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="rgba(255,255,255,1)"
-              >
-                <path
-                  d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM11 13V19H13V13H11Z"
-                ></path>
-              </svg>
-              <div>Dashboard</div></a
+            <a href="/"><div><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="rgba(255,255,255,1)"
             >
+              <path
+                d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM11 13V19H13V13H11Z"
+              ></path>
+            </svg></div></a>
+            <a href="/dashboard"><div>Dashboard</div></a>
           </div>
           <div>
             <input
               type="text"
               name="searching"
-              id=""
-              placeholder="Search Your List Or Task"
+              id="search-value"
+              placeholder="Search Your List"
             /><svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -208,7 +338,6 @@
 
         <div class="list-section">
           <div class="all-list-options">
-            <!-- <h1>Hello Ji</h1> -->
             <div>
               <div>
                 <svg
@@ -227,6 +356,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="rgba(255,255,255,1)"
+                  id="newListIcon"
                 >
                   <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path>
                 </svg>
@@ -234,6 +364,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="rgba(255,255,255,1)"
+                  id="listWidthInc"
                 >
                   <path
                     d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
@@ -244,89 +375,200 @@
           </div>
 
           <div class="list-options">
-            <!-- <div class="all-lists">
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-                cumque quo consequuntur! Minus quae eum culpa eos. Facere,
-                repellat tempore fugiat dolor cum ea nisi, accusantium,
-                doloremque quod ipsam voluptates.
-              </p>
-            </div> -->
+            <div class="all-lists">
+              <% for( let i = 0; i < currUser.lists.length; i++ ) { %>
+              <div class="list imp-list-sec" id="list-<%=i%>">
+                <img src="/img/home-page/logo.png" alt="" />
+                <div class="list-name-and-more">
+                  <div class="list-name"><%= currUser.lists[i] %></div>
+                  <div class="d-block list-crud-op">:</div>
+                </div>
+              </div>
+              <div id="list-crud-box-<%=i%>" class="list-crud-box">
+                <form action="/lists/edit">
+                  <input type="text" name="listName" id=""value="<%=currUser.lists[i]%>" style="display:none;">
+                  <button>Edit List</button>
+                </form>
+                <form action="/lists/delete?_method=DELETE&listName=<%=currUser.lists[i]%>" method="post">
+                  <button>Delete List</button>
+                </form>
+              </div>
+              <% } %>
+            </div>
           </div>
         </div>
       </div>
       <div class="dashboard">
-        <h1>Main Content of dashboard</h1>
+        <div class="dashboard-top">
+          <h1>Dashboard</h1>
+          <div class="imp-dashB-links">
+            <ul>
+              <li><a href="/tasks/new" target="_blank">Create New Task</a></li>
+              <li><a href="/tasks" target="_blank">Show All Tasks</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="list-content">
+          <% if (currUser.lists.length == 0) { %>
+          <p>
+            Note : You Don't Have Any Lists, You can create and can see Tasks of
+            that list here.
+          </p>
+          <% } else{%>
+          <p class="lists-tip">
+            Tip : Click on any list and see tasks of that list.
+          </p>
+          <% } %>
+          <!-- Adding Whole data using js -->
+        </div>
       </div>
     </main>
 
+
+
+ 
+
     <script defer>
       const topOptions = document.querySelector(".top-options");
-      console.log(topOptions);
+      // console.log(topOptions);
       const allListOptions = document.querySelector(".all-list-options");
-      console.log(allListOptions);
+      // console.log(allListOptions);
       const listOptions = document.querySelector(".list-options");
-      console.log(listOptions);
+      // console.log(listOptions);
       const totalHeight = window.innerHeight;
 
       let removalHeight = topOptions.offsetHeight + allListOptions.offsetHeight;
-      console.log(removalHeight);
+      // console.log(removalHeight);
 
       listOptions.style.height = totalHeight - removalHeight + "px";
+
+      //// List and task related
+      const lists = document.getElementsByClassName("list");
+      // console.log(lists);
+
+      for (let list = 0; list < lists.length; list++) {
+        lists[list].addEventListener("click", async (event) => {
+          // console.log(event.target);
+          // console.log(event.currentTarget);
+          // console.log(event.target.getAttribute("id"));
+
+          let id = event.currentTarget.getAttribute("id");
+          let listName = event.currentTarget.children[1].children[0].innerText;
+          // console.log(id)
+          let data = await getData(listName);
+          // console.log(data);
+          let d = JSON.parse(data);
+
+          showData(listName, d);
+        });
+      }
+
+      function showData(listName, d) {
+        // console.log(d);
+        let showListData = `
+            <h1 class="d-ul-w">${listName}</h1>
+              <div id="listing-data" class="">
+                  
+              </div>
+          `;
+        const listContent = document.getElementById("list-content");
+        listContent.innerHTML = showListData;
+
+        // let listData=[];
+        let listingDataPar = document.getElementById("listing-data");
+
+        if (d.length != 0) {
+          for (let i = 0; i < d.length; i++) {
+            let mainList = document.createElement("div");
+            let h1 = document.createElement("h1");
+            let para = document.createElement("p");
+            let div = document.createElement("div");
+
+            h1.innerHTML = d[i].name;
+            h1.classList.add("list-title-name");
+            para.innerText = d[i].description;
+            mainList.append(h1, para);
+
+            let a = document.createElement("a");
+            a.setAttribute("href", "/tasks/" + d[i]._id);
+            a.appendChild(mainList);
+            listingDataPar.append(a);
+            // console.log(listingDataPar);
+          }
+        }else{
+          if(listName.includes("List Not Found")){
+            listingDataPar.innerText = "Please Try Again With New List Name !!";
+          }else{
+            listingDataPar.innerText = "No Tasks Are In This List. :("
+          }
+        }
+      }
+
+      async function getData(listName) {
+        let raw = await fetch(`/lists/data?listName=${listName}`);
+        let jsonD = await raw.json();
+        // console.log(raw);
+        // console.log(jsonD);
+        return jsonD;
+      }
+
+      //handling the search input from user side
+      let searchIcon = document.querySelector(".search-icon");
+      let searchValue = document.querySelector("#search-value");
+
+      searchIcon.addEventListener("click", async (e) => {
+        let val = searchValue.value;
+        if (val.length != 0) {
+          let data = await getSearchResult(val);
+          data = JSON.parse(data);
+          let listName = data[data.length-1];
+          if(listName){
+          data.pop(); //vo listname remove ker diya hai
+          showData(listName,data);
+          //1st arg is list name and 2nd arg is list k ander k tasks
+          }else{
+            showData("List Not Found :( ",[]);
+          }
+        }
+      });
+
+      async function getSearchResult(val) {
+        let raw = await fetch(`/lists/search/data?q=${val}`);
+        let jsonD = await raw.json();
+        // console.log(raw);
+        // console.log(jsonD);
+        return jsonD;
+      }
+
+      let newListIcon = document.getElementById("newListIcon");
+      newListIcon.addEventListener("click", (e) => {
+        window.location.href = "/lists/new";
+      });
+
+      let listWidthInc = document.getElementById("listWidthInc");
+      let overviewSec = document.getElementById("overview-sec");
+      listWidthInc.addEventListener("click", (e) => {
+        overviewSec.classList.toggle("width-increase");
+      });
+
+      
+      // List styles and options edit delete etc
+      const listCRUDEle = document.getElementsByClassName("list-crud-op");
+
+      for(let i=0;i<listCRUDEle.length;i++){
+        listCRUDEle[i].addEventListener('click',(e)=>{
+          // console.log("clicked")
+          const listCRUDBox = document.querySelector(`#list-crud-box-${i}`);
+          listCRUDBox.classList.toggle("show-me");
+      })
+      }
+
+      let reloadBtn = document.querySelector(".reload-btn");
+      reloadBtn.addEventListener('click',(e)=>{
+        window.location.href="/dashboard";//reload kervane k liye
+      })
+
     </script>
   </body>
 </html>

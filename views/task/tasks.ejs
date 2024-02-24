@@ -1,31 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= currUser.name.toUpperCase() %>'s All Tasks</title>
+    <%- include("../include/head") %>
 
     <style>
-        div{
-            border: 2px solid black;
-            margin-top: 2vw;
-            border-radius: 1rem;
-            padding: 1rem;
-        }
+      main{
+        margin-top: 2vw;
+        padding: 1vw 5%;
+        min-height: 80dvh;
+      }
+      main > div:nth-child(1){
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      main > div:nth-child(1) a{
+        background-color: #00a34d;
+        font-size: 1.2rem;
+        color: white;
+        font-weight: 500;
+        padding: 3px 7px;
+        border-radius: 7px;
+      }
+      .main-heading{
+        font-size: 2.5rem;
+      }
+      #sec-1{
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+      #sec-1 > div{
+        border: 2px solid #00a34d;
+        padding: 1vw;
+      }
+      #sec-1 > div > h3{
+        text-transform: capitalize;
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      .show-in-detail{
+        display: block;
+        margin-top: 1vw;
+        /* font-size: 1.1rem; */
+        text-decoration: underline 2px #00a34d;
+        font-weight: 500;
+      }
+
+      @media(width<=750px){
+        main > div:nth-child(1){
+        flex-wrap: wrap;
+      }
+      main > div:nth-child(1) > *{
+        width: 100%;
+      }
+      main > div:nth-child(1) a{
+        margin-top: 2vw;
+        width: 11rem;
+        text-align: center;
+      }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <%-include("../include/simple-header.ejs")%>
+    <%- include("../include/flash-msg.ejs") %>
     
-    <h1>All tasks</h1>
-    
-    <% for( let index = 0; index < user.tasks.length; index++ ) { %>
+    <main>
         <div>
-            <h3><%= user.tasks[index].name %></h3>
-            <p>
-                <%= user.tasks[index].description %>
-            </p>
-            <a href="/tasks/<%= user.tasks[index]._id %>">Show In Details</a>
+            <% if (user.tasks  && user.tasks.length) { %>
+                <h1 class="main-heading">Your All Tasks,<span class="imp-txt txt-cap"><%= currUser.name %> :)</span></h1>
+                <% } else{%>
+                    <h1 class="main-heading">You Don't Have Any Task, <span class="imp-txt txt-cap"><%= currUser.name %>:)</span></h1>
+            <% } %>
+            <a href="/tasks/new">Create New Task</a>
         </div>
-    <% } %>
-</body>
+        <section class="sec" id="sec-1">
+            <% for( let index = 0; index < user.tasks.length; index++ ) { %>
+                <div>
+                  <h3><%= user.tasks[index].name %></h3>
+                  <p><%= user.tasks[index].description %></p>
+                  <a href="/tasks/<%= user.tasks[index]._id %>" target="_blank" class="show-in-detail">Show In Detail</a>
+                </div>
+                <% } %> 
+        </section>
+
+
+        <!-- <section class="sec" id="sec-2">
+            <div>
+                
+            </div>
+        </section> -->
+    </main>
+
+    
+    <%-include("../include/footer")%>
+  </body>
 </html>

@@ -1,4 +1,74 @@
-<footer>
-    <p class="footer-text">© 2024 PlanHolder. All rights reserved.</p>
-    <h1>Footer Pending hai abhi</h1>
+
+<!-- <footer>
+  <div class="f-socail">
+      <a href="">  <i class="fa-brands fa-square-facebook"></i>  </a>
+      <a href="">  <i class="fa-brands fa-square-instagram"></i>  </a>
+      <a href="">  <i class="fa-brands fa-linkedin"></i>  </a>
+      <a href="">  <i class="fa-brands fa-youtube"></i>  </a>
+      <a href="">  <i class="fa-brands fa-twitter"></i>  </a>
+  </div>
+  <div class="f-brand">
+      &copy; 2024 PlanHolder. All Rights Reserved.
+  </div>
+  <div class="f-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+  </div>
+</footer> -->
+
+<footer class="footer">
+    <div class="footer-row">
+      <div class="footer-col">
+        <h4>PlanHolder</h4>
+        <ul class="links">
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Upcoming Updates</h4>
+        <ul class="links">
+          <li><a>Custom Theme</a></li>
+          <li><a>Custom Dashboard</a></li>
+          <li><a>Reports And Summary</a></li>
+          <li><a>Collabration</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Features</h4>
+        <ul class="links">
+          <li><a>Task Creation and Management</a></li>
+          <li><a>Search Functionality</a></li>
+          <li><a>List Creation and Organization</a></li>
+          <li><a>Mobile Responsiveness and Accessibility</a></li>
+          <li><a>Security</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>
+          Subscribe to our newsletter for a weekly dose
+          of news, updates, helpful tips, and
+          exclusive offers. 
+        </p>
+        <form  method="post" id="newsletter-form">
+          <input type="text" name="email" placeholder="Your email">
+          <button type="submit">SUBSCRIBE</button>
+        </form>
+        <div class="icons">
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    document.querySelector("#newsletter-form").setAttribute("action",`/newsletter/email?pastPath=${window.location}`)
+  </script>

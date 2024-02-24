@@ -6,7 +6,10 @@
     <title>PlanHolder: Project Management & Team Collaboration Software</title>
 
     <%- include("../include/head.ejs")%>
-    <link rel="stylesheet" href="./css/home-page.css" />
+    <link rel="stylesheet" href="/css/home-page.css" />
+    <script src="/js/common.js" defer></script>
+
+
 
   </head>
   <body>
@@ -73,20 +76,20 @@
             <p class="mb-3">
               <em
                 ><span style="cursor: default"
-                  ><strong>With ProofHub:</strong></span
+                  ><strong>With PlanHolder:</strong></span
                 ></em
               >
               Everything is organized, project progress is clear, everyone's on
               the same page, and people feel at ease.
             </p>
 
-            <div class="sec-1-end">
+            <!-- <div class="sec-1-end">
               <div>
                 <button>Start your free trial</button>
                 <p><i class="ri-play-circle-line"></i>How PlanHolder Works?</p>
               </div>
               <p class="no-credit">No credit card required. Cancel anytime.</p>
-            </div>
+            </div> -->
           </div>
           <div class="sec-1-right">
             <img
@@ -158,7 +161,7 @@
       <section class="sec-3">
         <div class="sec-3-par">
           <div class="sec-3-upper">
-            <p>PROJECT MANAGEMENT</p>
+            <p id="projectManagement">PROJECT MANAGEMENT</p>
             <h2>All your projects and teamwork in one place</h2>
             <nav class="sec-3-options">
               <div class="active-option-s3">Projects & Tasks</div>
@@ -173,7 +176,7 @@
           <div class="sec-3-lowwer">
             <div class="sec-3-all-content">
                 <div class="sec-3-content">
-                    <p>Projects & Tasks</p>
+                    <p class="content-title">Projects & Tasks</p>
                     <p>
                       Plan, track, & manage projects of any size, from simple to
                       complex–across your team from one easy-to-use platform.
@@ -184,9 +187,10 @@
                       <div><span>3</span> Custom fiels</div>
                       <div><span>4</span> Dependencies</div>
                       <div><span>5</span> Reports</div>
-                      <p><a href="">Learn More</a></p>
+                      <!-- <p><a href="">Learn More</a></p> -->
                     </div>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/task-table-view.png" alt="content-img" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
                 <div class="sec-3-content unactive">
                     <p>Views</p>
@@ -199,7 +203,8 @@
                       <div><span>3</span> Gantt View</div>
                       <div><span>4</span> Calendar View</div>
                     </div>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/board-view.png" alt="content-img" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
                 <div class="sec-3-content unactive">
                     <p>Time Tracking</p>
@@ -212,9 +217,10 @@
                       <div><span>3</span> Timer</div>
                       <div><span>5</span> Reports</div>
                       <div><span>4</span> Export timesheets</div>
-                      <p><a href="">Learn More</a></p>
+                      <!-- <p><a href="">Learn More</a></p> -->
                     </div>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/time-tracking.png" alt="content-img" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
                 <div class="sec-3-content unactive">
                     <p>Workflows</p>
@@ -225,16 +231,18 @@
                       <div><span>1</span> Workflow stages</div>
                       <div><span>2</span> Default workflow</div>
                       <div><span>3</span> Custom workflow</div>
-                      <p><a href="">Learn More</a></p>
+                      <!-- <p><a href="">Learn More</a></p> -->
                     </div>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/workflow.png" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
                 <div class="sec-3-content unactive">
                     <p>Templates</p>
                     <p>
                         Create custom project templates by adding tasklists, discussion topics, timesheets, notes and more. Use templates to get started on new projects quickly without having to fill in details from scratch.
                     </p>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/project-template.png" alt="content-img" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
                 <div class="sec-3-content unactive">
                     <p>Reports</p>
@@ -247,9 +255,10 @@
                       <div><span>3</span> Resource utilization</div>
                       <div><span>4</span> Time utilization</div>
                       <div><span>5</span> Time logged</div>
-                      <p><a href="">Learn More</a></p>
+                      <!-- <p><a href="">Learn More</a></p> -->
                     </div>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/reports.png" alt="content-img" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
                 <div class="sec-3-content unactive">
                     <p>Files & Documents</p>
@@ -261,9 +270,10 @@
                       <div><span>2</span> File versioning</div>
                       <div><span>3</span> Collaboration</div>
                       <div><span>4</span> Approval</div>
-                      <p><a href="">Learn More</a></p>
+                      <!-- <p><a href="">Learn More</a></p> -->
                     </div>
-                    <button>Get started for free</button>
+                    <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/files.png" alt="content-img" class="content-img">
+                    <!-- <button>Get started for free</button> -->
                 </div>
             </div>
             <div class="sec-3-img">
@@ -280,9 +290,9 @@
       <section class="sec-4">
         <div class="sec-4-par">
           <div class="sec-4-upper">
-            <p>COLLABORATION</p>
+            <p id="collaboration">COLLABORATION</p>
             <h2>All your team’s communication in one place</h2>
-            <nav class="sec-4-options">
+            <nav class="sec-4-options hide-nav-450px">
               <div class="active-option-s4">Discussion</div>
               <div>Proofing & Approval</div>
               <div>Notes</div>
@@ -300,10 +310,11 @@
                   to a conversation to keep everyone on the same page. Get all the
                   relevant details related to the topic documented in one place.
                 </p>
-                <div>
-                  <p><a href="">Learn More</a></p>
+                <div class="learn-more">
+                  <!-- <p class="learn-more"><a href="">Learn More</a></p> -->
                 </div>
-                <button>Get started for free</button>
+                <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/discussion.png" alt="content-img" class="content-img">
+                <!-- <button>Get started for free</button> -->
               </div>
               <div class="sec-4-content unactive">
                 <p>Proofing</p>
@@ -315,19 +326,23 @@
                   <div><span>2</span> File versioning</div>
                   <div><span>3</span> Collaboration</div>
                   <div><span>4</span> Approval</div>
-                  <p><a href="">Learn More</a></p>
                 </div>
-                <button>Get started for free</button>
+                <div class="learn-more">
+                  <!-- <p class="learn-more"><a href="">Learn More</a></p> -->
+                </div>
+                <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/proofing.png" alt="content-img" class="content-img">
+                <!-- <button>Get started for free</button> -->
               </div>
               <div class="sec-4-content unactive">
                 <p>Notes</p>
                 <p>
                   Capture ideas, jot down important details, action items, and internal wiki all in one place. Collaborate on shared notes with your team members and make edits instantly.
                 </p>
-                <div>
-                  <p><a href="">Learn More</a></p>
+                <div class="learn-more">
+                  <!-- <p class="learn-more"><a href="">Learn More</a></p> -->
                 </div>
-                <button>Get started for free</button>
+                <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/note.png" alt="content-img" class="content-img">
+                <!-- <button>Get started for free</button> -->
               </div>
               <div class="sec-4-content unactive">
                 <p>Announcements</p>
@@ -340,9 +355,12 @@
                   <div><span>3</span> Collaborate using comments</div>
                   <div><span>4</span> @Mention people</div>
                   <div><span>5</span> Share files & docs</div>
-                  <p><a href="">Learn More</a></p>
                 </div>
-                <button>Get started for free</button>
+                <div class="learn-more">
+                  <!-- <p class="learn-more"><a href="">Learn More</a></p> -->
+                </div>
+                <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/announcement.png" alt="content-img" class="content-img">
+                <!-- <button>Get started for free</button> -->
               </div>
               <div class="sec-4-content unactive">
                 <p>Chat</p>
@@ -353,9 +371,12 @@
                   <div><span>1</span> One to one chat</div>
                   <div><span>2</span> Group chat</div>
                   <div><span>3</span> File & document sharing</div>
-                  <p><a href="">Learn More</a></p>
                 </div>
-                <button>Get started for free</button>
+                <div class="learn-more">
+                  <!-- <p class="learn-more"><a href="">Learn More</a></p> -->
+                </div>
+                <img src="https://www.proofhub.com/wp-content/themes/ph5.1/images/home/chat.png" alt="content-img" class="content-img">
+                <!-- <button>Get started for free</button> -->
               </div>
             </div>
             <div class="sec-4-img">
@@ -492,7 +513,7 @@
             </div>
           </div>
         </div>
-        <button>See all features</button>
+        <!-- <button>See all features</button> -->
       </section>
 
       <section class="sec-6">
@@ -518,7 +539,7 @@
             <img src="/img/home-page/vector.svg" alt="" />
           </div>
         </div>
-        <a href="">View all integrations</a>
+        <!-- <a href="">Vimde@ew all integrations</a> -->
       </section>
     </main>
 
