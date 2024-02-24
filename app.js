@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Task } = require("./models/Task");
@@ -25,9 +26,10 @@ const userRouter = require("./routers/users");
 const listRouter = require("./routers/lists");
 const mainRouter = require("./routers/main");
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/taskmgt';
+// const MONGO_URL = 'mongodb://127.0.0.1:27017/taskmgt';
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    console.log(process.env.ATLAS_MONGODB_URL);
+    await mongoose.connect(process.env.ATLAS_MONGODB_URL);
 }
 
 main()
@@ -37,6 +39,7 @@ main()
     .catch((err) => {
         console.log("ERROR ERROR ERROR");
         console.log("Can't Connected With DB. See Error.");
+        console.log(err);
     });
 
 
@@ -49,6 +52,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride("_method"));
 app.use(flash());
+
+// const storeConfig = MongoStore.create(
+//     { mongoUrl: process.env.ATLAS_MONGODB_URL,
+//         crypto:{
+//             secret:"ajaymahiwal",
+//         } 
+//     });
+// storeConfig.on("error",()=>{
+//     console.log("Error in connect-mongo store.");
+// })
 app.use(session({
     secret: 'ajaymahiwal',
     resave: false,
@@ -58,7 +71,8 @@ app.use(session({
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-    }
+    },
+    store: MongoStore.create({ mongoUrl: process.env.ATLAS_MONGODB_URL })
 }));
 
 

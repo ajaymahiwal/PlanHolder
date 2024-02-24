@@ -38,10 +38,10 @@
         </li>
       </ul>
       <ul>
-          <% if (!currUser) { %>
-            <li class="start-plan"><a href="/login">Login</a></li>
+          <% if (currUser) { %>
+            <li class="start-plan"><a href="/dashboard" class="dashboard-link">Dashboard</a></li>
             <% } else { %>
-              <li class="start-plan"><a href="/dashboard" class="dashboard-link">Dashboard</a></li>
+              <li class="start-plan"><a href="/login">Login</a></li>
            <% } %>
         <!-- <li><a href="/plans" class="book-plan">Book a demo</a></li> -->
         <!-- <li><a href="/start-trial" class="start-plan">Start your free trial</a></li> -->

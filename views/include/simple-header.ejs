@@ -38,16 +38,16 @@
 
       </ul>
       <ul>
-        <% if (!currUser) { %>
-          <li><a href="/login">Login</a></li>
-          <% } else { %>
-            <li><a href="/dashboard" class="dashboard-link">Dashboard</a></li>
+        <% if (typeof currUser == 'object' && currUser) { %>
+          <li><a href="/dashboard" class="dashboard-link">Dashboard</a></li>
             <li>
               <a href="/user/profile/<%= currUser._id %>" id="main-logo">
                 <!-- <img src="/img/home-page/logo.png" alt="logo" class="logo" /> -->
                 <i class="ri-user-fill logo"></i>
               </a>
             </li>
+            <% } else { %>
+              <li><a href="/login">Login</a></li>
          <% } %>
     </ul>
     </nav>
@@ -67,10 +67,8 @@
         </li> 
       </ul> -->
       <ul>
-          <% if (!currUser) { %>
-            <li class=""><a href="/login" class="green-btn-adv">Login</a></li>
-            <% } else { %>
-              <li class=""><a href="/dashboard" class="dashboard-link green-btn-adv" id="header-dashboard-btn">Dashboard</a></li>
+          <% if (typeof currUser == 'object' && currUser) { %>
+            <li class=""><a href="/dashboard" class="dashboard-link green-btn-adv" id="header-dashboard-btn">Dashboard</a></li>
               <li>
                 <a href="/user/profile/<%= currUser._id %>" id="main-logo">
                   <span class="header-user-name"><%= currUser.name %></span>
@@ -79,6 +77,8 @@
                   <i class="ri-user-fill logo"></i>
                 </a>
               </li> 
+            <% } else { %>
+              <li class=""><a href="/login" class="green-btn-adv">Login</a></li>
            <% } %>
       </ul>
     </nav>
