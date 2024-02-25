@@ -86,8 +86,24 @@
       a > div {
         margin-left: 0.5rem;
       }
-      .top-options div {
+      .top-options > div {
         display: flex;
+      }
+      .my-profile{
+        font-size: 1.2rem;
+        font-weight: 500;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .my-profile a{
+        border: 2px solid white;
+        padding: 2px 1rem;
+        border-radius: 15px;
+      }
+      .my-profile a:hover{
+        background-color: #20e77d;
+        color:black;
       }
       .search-icon {
         margin-inline: 0.5rem;
@@ -334,6 +350,11 @@
               ></path>
             </svg>
           </div>
+
+          <div class="my-profile">
+            <a href="/user/profile/<%= currUser._id %>" target="_blank">My Profile</a>
+            <a href="/tasks" target="_blank">All Tasks</a>
+          </div>
         </div>
 
         <div class="list-section">
@@ -378,7 +399,8 @@
             <div class="all-lists">
               <% for( let i = 0; i < currUser.lists.length; i++ ) { %>
               <div class="list imp-list-sec" id="list-<%=i%>">
-                <img src="/img/home-page/logo.png" alt="" />
+                <!-- <img src="/img/home-page/logo.png" alt="" /> -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)"><path d="M11 4H21V6H11V4ZM11 8H17V10H11V8ZM11 14H21V16H11V14ZM11 18H17V20H11V18ZM3 4H9V10H3V4ZM5 6V8H7V6H5ZM3 14H9V20H3V14ZM5 16V18H7V16H5Z"></path></svg>
                 <div class="list-name-and-more">
                   <div class="list-name"><%= currUser.lists[i] %></div>
                   <div class="d-block list-crud-op">:</div>
@@ -404,7 +426,7 @@
           <div class="imp-dashB-links">
             <ul>
               <li><a href="/tasks/new" target="_blank">Create New Task</a></li>
-              <li><a href="/tasks" target="_blank">Show All Tasks</a></li>
+              <!-- <li><a href="/tasks" target="_blank">Show All Tasks</a></li> -->
             </ul>
           </div>
         </div>

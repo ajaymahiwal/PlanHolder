@@ -47,7 +47,7 @@
   max-width: 300px;
 }
 
-.footer-col form {
+.footer-col > form {
   display: flex;
   gap: 5px;
 }
@@ -68,7 +68,7 @@
   color: #ccc;
 }
 
- .footer-col form button {
+ .footer-col > form > button {
   background: #fff;
   outline: none;
   border: none;
@@ -113,15 +113,15 @@
     gap: 1rem;
   }
 
-  .footer-col form {
+  .footer-col > form {
     display: block;
   }
 
-  .footer-col form :where(input, button) {
+  .footer-col > form :where(input, button) {
     width: 100%;
   }
 
-  .footer-col form button {
+  .footer-col >form > button {
     margin: 10px 0 0 0;
   }
 }

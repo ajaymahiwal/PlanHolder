@@ -28,7 +28,7 @@
 }
 
 :root{
-    --header-height:6vw;
+    --header-height:5rem !important;
     --common-width:85%;
 }
 
@@ -38,6 +38,21 @@ html,body{
     position: relative;
     scroll-behavior: smooth;
 }
+body::-webkit-scrollbar {
+    width: 7px !important;
+}
+
+body {
+    overflow: -moz-scrollbars-none;
+}
+
+body {
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: white;
+}
 
 .b{
     border: 2px solid red;
@@ -46,6 +61,8 @@ html,body{
     display: none;
 }
 #main-logo{
+    width: fit-content;
+    margin: 5px auto;
     display: flex;
     align-items: center;
     /* border: 2px solid red; */
@@ -109,7 +126,7 @@ header nav ul{
     display: flex;
     align-items: last baseline;
     justify-content: space-around;
-    column-gap: 1.5rem;
+    column-gap: 1.5rem; 
     /* width: %; */
 }
 
@@ -126,11 +143,34 @@ header nav ul{
 .dashboard-link{
     font-size: 1.3rem;
     font-weight: 500;
+    display: block;
+    color: #00a34d;
+    text-align: center;
 }
 .dashboard-link:hover{
-    border-bottom: 2px solid #00a34d;
+    text-decoration: underline 2px #00a34d;
 }
-
+#main-logo{
+    text-align: center;
+    margin: 1rem auto;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: baseline;
+}
+.logo{
+    font-size: 1.5rem !important;
+    color: #00a34d !important;
+}
+#all-tasks{
+    font-size: 1.3rem;
+    font-weight: 500;
+    display: block;
+    color: #00a34d;
+    text-align: center;
+}
+#all-tasks:hover{
+    text-decoration: underline 2px #00a34d;
+}
 .book-plan{
     border-bottom: 2px dotted green;
 }
@@ -157,18 +197,47 @@ header nav ul{
     font-weight: bold;
 }
 
+
+.drop-out-1,.drop-out-2{
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 20px !important; 
+    z-index: 3;
+    /* width: ; */
+    /* taaki scrool ho ske isliye */
+    /* top: calc(var(--header-height) + bottom header ki height); */
+    /* top: calc(var(--header-height) + var(--bottom-header-height)); */
+    padding-bottom: 15rem !important;
+}
+
+.drop-out-1::-webkit-scrollbar,.drop-out-2::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.drop-out-1,.drop-out-2 {
+    overflow: -moz-scrollbars-none;
+}
+
+.drop-out-1,.drop-out-2 {
+    -ms-overflow-style: none;
+}
+
+.drop-out-1::-webkit-scrollbar-thumb,.drop-out-2::-webkit-scrollbar-thumb {
+    background-color: black;
+}
+
 .drop-out-1{
     width: 100%;
     min-height: calc(100dvh - var(--header-height));
     padding: 0 5vw;
     background-color: white;
     transition: all 3s;
-    /* position: absolute; */ 
     margin-bottom: 5vw;
 }
 
 .drop-out-par{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     /* border: 2px solid blueviolet; */
@@ -189,11 +258,7 @@ header nav ul{
 .drop-out-links i{
     font-size: 1.7rem;
 }
-.drop-title{
-    width: fit-content;
-    font-size: 1.5rem;
-    border-bottom: 2px solid black;
-}
+
 
 
 .drop-out-2{
@@ -209,6 +274,7 @@ header nav ul{
 }
 .drop-out-par2{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     /* border: 2px solid blueviolet; */
@@ -220,6 +286,7 @@ header nav ul{
     flex-direction: column;
     row-gap: 1vw;
 }
+
 .drop-out-links2 > div{
     /* border: 2px solid blue; */
     margin-bottom: .6vw;
@@ -230,9 +297,10 @@ header nav ul{
     font-size: 1.7rem;
 }
 .drop-title{
-    width: fit-content;
     font-size: 1.5rem;
-    border-bottom: 2px solid black;
+    text-decoration: underline 2px black;
+    width: 100%;
+    text-align: center;
 }
 
 .dropout-unactive{
@@ -298,6 +366,9 @@ header nav ul{
         background-color:rgb(59, 58, 58);
         margin-bottom: 7vw;
         padding-bottom: 1rem;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
     }
     .bottom-header ul{
         /* border: 2px solid red; */
@@ -307,10 +378,10 @@ header nav ul{
         align-items: center;
     }
     .bottom-header ul li{
-        margin-top: 2vw;
+        margin-top: 5px;
     }
     #header-dashboard-btn{
-        margin: 5px 0;
+        margin: 5px auto !important;
     }
     .header-user-name{
         font-size: 1.5rem;
@@ -324,40 +395,71 @@ header nav ul{
         color: white;
         font-size: 1.8rem;
     }
-  }
+    
 
+    /* Other DropDown Related */
+    .drop-out-par > div{
+        border: 2px solid #00a34d;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1vw;
+    }
+    .drop-out-par2 > div{
+        border: 2px solid #00a34d;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1vw;
+    }
+
+    
+  }
+  @media(width<=550px){
+    :root{
+        --header-height:16vw;
+        
+    }
+
+  }
 
   @media(width<=500px){
     :root{
-        --header-height:14vw;
+        --header-height:17vw;
         
     }
 
   }
 
   @media(width<=450px){
+    :root{
+        --header-height:20vw;
+    }
     #main-logo .logo{
         height: 1.5rem;
     }
+    
     #main-logo .logo-name{
-        font-size: 1.3rem;
-        font-weight: 500;
+        font-size: 1.4rem;
+        font-weight: 600;
     }
     .header-user-name{
         font-size: 1.2rem;
         color: #00a34d;
         text-transform: capitalize;
     }
-    .logo{
-        color: white;
-        font-size: 1.5rem;
-    }
   }
 
   @media(width<=400px){
     :root{
-        --header-height:16vw;
-        
+        --header-height:20vw;
+    }
+    
+
+  }
+  @media(width<=350px){
+    :root{
+        --header-height:24vw;
     }
     
 
@@ -365,7 +467,7 @@ header nav ul{
 
   @media(width<=320px){
     :root{
-        --header-height:19vw;
+        --header-height:29vw;
         
     }
     #main-logo .logo{
@@ -455,6 +557,7 @@ header nav ul{
     color: white;
     font-size: 1.3rem;
     background-color: #00a34d;
+    width: fit-content;
   }
   @media(width<=800px){
     .green-btn-adv{

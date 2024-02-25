@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>  About Us | PlanHolder </title>
+ <%-include("../include/head")%>
+ <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+body{
+  font-family: 'Poppins', sans-serif;
+}
+.about-us{
+    height: 100dvh;
+    width: 100%;
+    padding: 5rem 0;
+}
+
+.pic{
+    width:15rem;
+    height: 15rem;
+}
+.about{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.text{
+  width: 50%;
+  padding-bottom: 3rem;
+}
+.text h2{
+  font-size: 5.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1;
+
+}
+.text h5{
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+h5 span{
+  color: #00a34d;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.text p{
+  font-size: 1.1rem;
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+.data{
+  margin-top: 30px;
+}
+.hire{
+  font-size: 18px;
+  background: #4070f4;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 6px;
+  transition: 0.5s;
+}
+.hire:hover{
+  background: #000;
+  border: 1px solid #4070f4;
+}
+
+.dev{
+    background-color: yellow;
+    margin-block: 1rem;
+    font-size: 1.2rem;
+    color: black;
+    font-weight: 500;
+}
+
+
+@media(width<=1000px){
+    .about{
+        flex-wrap: wrap;
+    }
+    .text{
+        text-align: center;
+        width: 100%;
+    }
+}
+@media(width<=450px){
+    .text h2{
+        font-size: 4.5rem;
+    }
+    .about img{
+        width: 13rem;
+        height: 13rem;
+    }
+}
+ </style>
+</head>
+<body>
+  <section class="about-us">
+    <div class="about">
+      <img src="/img/home-page/logo.png" class="pic">
+      <div class="text">
+        <h2>About Us</h2>
+        <h5>Empower Your Productivity with <span>PlanHolder</span></h5>
+          <p>
+            PlanHolder is your ultimate task management solution, offering a streamlined platform for creating tasks, organizing them into lists, and optimizing your workflow. Designed with simplicity and efficiency in mind, our intuitive dashboard provides a clear overview of your tasks, while customizable features empower you to tailor your workflow to your unique needs. Whether you're managing personal projects or collaborating with a team, PlanHolder helps you stay organized, focused, and productive. Join us and discover the ease of efficient task management with PlanHolder.
+          </p>
+
+        <h4 class="dev">Developed By: Ajay Mahiwal</h4>
+        <!-- <div class="data">
+            <% if (currUser) { %>
+                <a href="/dashboard" class="hire">Open Dashboard</a>
+                <% } else{%>
+                    <a href="/login" class="hire">Log In</a>
+            <% } %>
+        </div> -->
+      </div>
+    </div>
+  </section>
+</body>
+</html>

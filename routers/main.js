@@ -32,6 +32,9 @@ router.get("/privacy-policy", (req, res) => {
 router.get("/terms", (req, res) => {
     res.render("./other/terms.ejs");
 });
+router.get("/about-us", (req, res) => {
+    res.render("./other/about-us.ejs");
+});
 
 
 router.get("/signup", (req, res) => {
@@ -81,7 +84,7 @@ router.post("/login", passport.authenticate("local", { failureRedirect: "/login"
     res.redirect(`/user/profile/${req.user._id}`);
 });
 
-router.get("/logout", (req, res) => {
+router.delete("/logout", (req, res) => {
     req.logout((err) => {
         if (err) {
             return next(err);

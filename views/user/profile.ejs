@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+
     <title><%= currUser.name.toUpperCase() %>'s Profile</title>
     <%- include("../include/head") %>
 
@@ -11,8 +13,8 @@
         margin-block: 2rem;
         padding-left: 6%;
         padding-right: 6%;
-        padding-bottom: 20%;
-        min-height: 80dvh;
+        padding-bottom: 10%;
+        /* min-height: 70dvh; */
       }
       .sec {
         width: 100%;
@@ -38,6 +40,7 @@
         border: 2px solid blue;
       } */
       .user-info {
+        /* border: 2px solid red; */
         width: 20%;
         display: flex;
         flex-direction: column;
@@ -45,6 +48,7 @@
         align-items: center;
       }
       .user-name {
+        text-align: center;
         font-size: 1.8rem;
         font-weight: 600;
         color: #00a34d;
@@ -133,10 +137,138 @@
         font-weight: 500;
       }
 
+      .logout{
+        background-color: rgb(245, 62, 62);
+      }
+      .logout:hover{
+        background-color: red;
+      }
+      .logout:active{
+        background-color: red;
+      }
 
       .hide {
         display: none;
       }
+
+
+
+      /* confirm box related */
+      .green-btn {
+          display: block;
+          margin: 1vw auto;
+          border: none;
+          border-radius: 3rem;
+          padding: 0.5rem 4rem;
+          color: white;
+          font-size: 1.2rem;
+          background-color: #00a34d;
+        }
+        .del-btn{
+          background-color: rgba(255, 0, 0, 0.89);
+        }
+        .red-btn{
+          background-color: rgba(255, 0, 0, 0.89);
+        }
+      #confirmBox{
+            background-color:black;
+            color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 70vw;
+            padding: 2vw;
+            z-index: 2;
+            text-align: center;
+            border-radius: 1rem;
+        }
+        .confirm-box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #confirmBox > div{
+            margin: 2vw 0;
+            display: flex;
+            gap: 2vw;
+        }
+        .hide{
+            display: none !important;
+        }
+        .focus-eff{
+            animation: focusEff .1s;
+        }
+        @keyframes focusEff {
+            0%{
+                /* transform: translateY(0px); */
+                transform: translate(-50%,-50%);
+            }
+            50%{
+                transform: translate(-40%,-50%);
+            }
+            100%{
+                transform: translate(-50%,-50%);
+            }
+        }
+
+        @media(width<=650px){
+            .task-des{
+            padding-inline-start: 0ch;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        .main-title{
+            font-size: 2rem;
+            border-bottom: 2px solid #00a34d;
+        }
+        .highlight{
+            background-color: yellow;
+        }
+        .lists-with-task{
+            margin-top: 2rem;
+        }
+        .green-btn {
+          margin: 1rem auto;
+          padding: 0.5rem 2rem;
+          font-size: 1.2rem;
+        }
+        .flex{
+            flex-wrap: wrap;
+        }
+        }
+
+        @media(width<=500px){
+        #confirmBox .green-btn {
+          margin: 1rem auto;
+          padding: .4rem 2rem;
+          font-size: 1rem;
+        }
+        }
+        @media(width<=360px){
+        #confirmBox .green-btn {
+          margin: .2rem auto;
+          padding: .1rem 2rem;
+          font-size: 1rem;
+        }
+        #confirmBox{
+            padding: 1rem;
+        }
+        #confirmBox > div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        }
+
+
+
+
+
+
+
 
 
       @media(width<=800px){
@@ -179,6 +311,7 @@
         /* height: fit-content; */
       }
       .user-info {
+        
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -218,16 +351,16 @@
       }
       }
     </style>
-  </head>
+  </head> 
   <body>
-    <%- include("../include/simple-header") %> <%-
-    include("../include/flash-msg.ejs") %>
+    <%- include("../include/simple-header") %> 
+    <%-include("../include/flash-msg.ejs") %>
 
 
     <main>
       <section class="sec" id="sec-1">
         <div class="user-info">
-          <img src="<%= currUser.image %>" alt="Error due to some issue profile photo is not visible,Please Reload" class="user-img">
+          <img src="<%= currUser.image %>" alt="Error due to some issue profile photo is not visible,Please Reload" class="user-img" referrerpolicy="no-referrer">
           <!-- <div class="user-img"></div> -->
           <h2 class="user-name txt-cap"><%= currUser.name %></h2>
         </div>
@@ -363,15 +496,29 @@
           </div>
         </div>
       </section>
+
+      <section id="sec-3">
+        <div class="green-btn-adv logout del-btn">LogOut Me :)</div>
+        <div id="confirmBox" class="confirm-box hide">
+          <h1>Do You Want To LogOut ?</h1>
+          <div>
+              <form action="/logout?_method=DELETE" method="post">
+                  <button class="green-btn del-btn">Yes,I want</button>
+              </form>
+              <button class="green-btn" id="no-btn">No</button>
+          </div>
+        </div>
+        
+      </section>
     </main>
 
-    <!--  <%- include("../include/footer") %> -->
+    
 
 
     <script>
         let navLinks = document.getElementById("nav-links");
         let optionResult = document.getElementById("option-result-par");
-      console.dir(navLinks);
+      // console.dir(navLinks);
 
         navLinks.addEventListener('click',(e)=>{
             // console.log(e.target.nodeName)
@@ -399,5 +546,39 @@
             }
         })
     </script>
+
+    <script>
+       let delBtn = document.querySelector('.del-btn');
+        let confirmBox = document.querySelector('#confirmBox');
+
+
+        delBtn.addEventListener('click',(e)=>{
+            confirmBox.classList.toggle("hide");
+
+
+            if(!confirmBox.classList.contains('hide')){
+            window.addEventListener('click',(e)=>{
+                // console.log(e.target);
+                if((e.target != confirmBox) && (e.target != delBtn) ){
+                    confirmBox.classList.add('focus-eff');
+                    if(confirmBox.classList.contains('focus-eff')){
+                        setTimeout(()=>{
+                            // console.log('effect class is deleted !');
+                            confirmBox.classList.remove('focus-eff');
+                        },500);
+                    }
+                }
+            })
+        }
+        })
+
+        let noBtn = document.querySelector("#no-btn");
+        noBtn.addEventListener('click',(e)=>{
+            confirmBox.classList.add("hide");
+        })
+        
+    
+    </script>
+
   </body>
 </html>

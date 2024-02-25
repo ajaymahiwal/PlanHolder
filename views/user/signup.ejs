@@ -36,7 +36,7 @@
             border: 1px solid rgb(92, 91, 91);
         }
 
-        form button{
+        .main-form button{
             display: block;
             border: none;
             margin: 1.5vw auto;
@@ -135,6 +135,14 @@
 
 
 
+        #integration{
+            width: 80%;
+            margin: 3rem auto;
+        }
+
+
+
+
         /* responive part */
         @media(width<=1000px){
             .login-with-google{
@@ -169,7 +177,7 @@
             input{
                 font-weight: 350;
             }
-            form button{
+            .main-form button{
             padding: .5rem 2rem;
             font-size: 1.2rem;
         }
@@ -207,7 +215,7 @@
             background-color: rgba(137, 43, 226, 0.459);
         }
 
-        form button{
+        .main-form button{
             padding: .4rem 2rem;
             font-size: 1.1rem;
         }
@@ -217,6 +225,7 @@
         }
         }
     </style>
+    <link rel="stylesheet" href="/css/home-page.css">
 </head>
 <body>
     <%- include("../include/header.ejs") %>
@@ -260,7 +269,7 @@
         </div>
     </div>
 
-    <div class="awards">
+    <!-- <div class="awards">
         <div></div>
         <div></div>
         <div></div>
@@ -269,7 +278,31 @@
         <div></div>
         <div></div>
         <div></div>
-    </div>
+    </div> -->
+    <section class="sec-6" id="integration">
+        <p>INTEGRATIONS</p>
+        <h2>Integrate with the tools your team already uses</h2>
+        <div class="integration-tools">
+          <div class="inte-tool">
+            <img src="/img/home-page/vector.svg" alt="" />
+          </div>
+          <div class="inte-tool">
+            <img src="/img/home-page/vector.svg" alt="" />
+          </div>
+          <div class="inte-tool">
+            <img src="/img/home-page/vector.svg" alt="" />
+          </div>
+          <div class="inte-tool">
+            <img src="/img/home-page/vector.svg" alt="" />
+          </div>
+          <div class="inte-tool">
+            <img src="/img/home-page/vector.svg" alt="" />
+          </div>
+          <div class="inte-tool">
+            <img src="/img/home-page/vector.svg" alt="" />
+          </div>
+        </div>
+      </section>
     <%- include("../include/footer") %>
 </body>
 </html>

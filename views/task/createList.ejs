@@ -55,7 +55,7 @@
       button {
         display: block;
       }
-      form button {
+      .main-form button {
         margin: 3rem auto;
         border: none;
         border-radius: 3rem;
@@ -94,7 +94,7 @@
     <main>
       <section class="sec" id="sec-1">
         <h1 class="main-title">Create New List</h1>
-        <form action="/lists/new" method="post">
+        <form action="/lists/new" method="post" class="main-form">
           <div>
             <label for="">List Name</label>
             <input type="text" name="list[name]" id="" required />

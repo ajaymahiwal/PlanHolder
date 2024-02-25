@@ -21,7 +21,7 @@
           border-radius: 3rem;
           padding: 0.5rem 4rem;
           color: white;
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           background-color: #00a34d;
         }
         .task-list{
@@ -54,6 +54,10 @@
         .red-btn{
           background-color: rgba(255, 0, 0, 0.89);
         }
+        .isCompleted{
+            border-radius: 0 !important;
+            padding: .3rem 3rem !important;
+        }
         .main-title{
             border-bottom: 2px solid #00a34d;
         }
@@ -77,7 +81,7 @@
         font-weight: 500;
         text-transform: capitalize;
       }
-
+      
         #confirmBox{
             background-color:black;
             color: white;
@@ -183,17 +187,17 @@
                 <h1 class="imp-txt">Description :</h1>
                 <p class="task-des"><%= task.description %></p>
             </div>
-            <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%= task.created_at.toISOString().substring(0,19).split('T').join(" at ")%></time>
+            <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%= task.created_at.toISOString().substring(0,10).split('T').join(" at ")%></time>
             <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Deadline : <%= task.deadline.toISOString().substring(0,10);%></time>
             
             <% if (task.completed) { %>
                 <form action="/tasks/<%= task._id %>/completed?_method=PUT&value=false" method="post">
-                    <button class="green-btn">Task Is Completed :)</button>
+                    <button class="green-btn isCompleted">Task Is Completed :)</button>
                 </form>
                 
             <% } else{%>
                 <form action="/tasks/<%= task._id %>/completed?_method=PUT&value=true" method="post">
-                    <button class="green-btn red-btn">Not Completed</button>
+                    <button class="green-btn red-btn isCompleted">Not Completed</button>
                 </form>
             <% } %>
         
