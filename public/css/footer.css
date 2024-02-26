@@ -2,9 +2,11 @@
 
 /* All footer code plus responsive part of code is present in this file */
 
-
+footer{
+  margin-top: 5rem; 
+  /* minimum i am giving*/
+}
 .footer {
-
   padding: 1rem;
   width: 100%;
   background: #10182F;

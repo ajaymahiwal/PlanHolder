@@ -19,6 +19,7 @@ body{
 }
 
 .pic{
+    cursor: pointer;
     width:15rem;
     height: 15rem;
 }
@@ -79,6 +80,7 @@ h5 span{
     font-size: 1.2rem;
     color: black;
     font-weight: 500;
+    text-align: center;
 }
 
 
@@ -113,7 +115,7 @@ h5 span{
             PlanHolder is your ultimate task management solution, offering a streamlined platform for creating tasks, organizing them into lists, and optimizing your workflow. Designed with simplicity and efficiency in mind, our intuitive dashboard provides a clear overview of your tasks, while customizable features empower you to tailor your workflow to your unique needs. Whether you're managing personal projects or collaborating with a team, PlanHolder helps you stay organized, focused, and productive. Join us and discover the ease of efficient task management with PlanHolder.
           </p>
 
-        <h4 class="dev">Developed By: Ajay Mahiwal</h4>
+        <h4 class="dev">Made With Love &#9829; By: Ajay Mahiwal</h4>
         <!-- <div class="data">
             <% if (currUser) { %>
                 <a href="/dashboard" class="hire">Open Dashboard</a>
@@ -124,5 +126,13 @@ h5 span{
       </div>
     </div>
   </section>
+
+
+  <script>
+    let icon = document.querySelector(".pic");
+    icon.addEventListener("click",(e)=>{
+      window.location.href = "/";
+    });
+  </script>
 </body>
 </html>

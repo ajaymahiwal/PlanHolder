@@ -35,7 +35,7 @@ for (let i = 0; i < dropBtn_2.length; i++) {
         }
         dropSection_2.classList.toggle("dropout-unactive");
         let bottomHeight = findBottomHeight();
-        console.log("bottomHeight", bottomHeight);
+        // console.log("bottomHeight", bottomHeight);
 
         for(let i=0;i<dropDown.length;i++){
             dropDown[i].style.top = `${5*16 + bottomHeight}px`;
