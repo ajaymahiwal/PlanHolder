@@ -1,7 +1,6 @@
 const { Task } = require("../models/Task");
 const { User } = require("../models/User");
-// const schedule = require("node-schedule");
-const cron = require('node-cron');
+const schedule = require("node-schedule");
 const { v4: uuidv4 } = require('uuid');
 const accountSid = process.env.ACCOUNT_SID;
 const authToken = process.env.AUTH_TOKEN;
@@ -9,8 +8,9 @@ const client = require('twilio')(accountSid, authToken);
 
 
 function createJob(reminder) {
-
-    const jobRef = cron.schedule(reminder.date, () => {
+    let jobId = uuidv4();//use uuid here
+   
+    const job = schedule.scheduleJob(jobId, reminder.date, () => {
         console.log("reminder time arrived my dear, msg sending......");
         // callback will run after reminder scheduled time
         client.messages
@@ -18,8 +18,7 @@ function createJob(reminder) {
                 body: `Hello ${reminder.owner.toUpperCase()}, this a reminder for your ${reminder.taskName.toUpperCase()} Task. Thank You For Using PlanHolder :)`,
                 // body:"Hello bhaii ajay mein twilio se bol rha hu",
                 from: '+15169814205',
-                // to: `+${reminder.userContact}`,
-                to:"+918168152757"
+                to: `+${reminder.userContact}`,
             })
             .then(message => console.log(message.sid))
             .catch(error => console.error(error));
@@ -29,7 +28,7 @@ function createJob(reminder) {
     // console.log("job",job);
     console.log("job is created !");
 
-    return jobRef;
+    return jobId
 }
 
 
@@ -52,7 +51,22 @@ module.exports.postNewTask = async (req, res) => {
     console.log(task.d_time);
     task.deadline = task.d_date + "T" + task.d_time;
 
-
+    let phone_no = req.user.contact_num ? req.user.contact_num : null;
+    
+    if(Date.now() < Date.parse(task.deadline) && phone_no){
+        let jobId = createJob({
+            date: task.deadline,
+            owner: req.user.name,
+            taskName: task.name,
+            userContact: phone_no,
+        });
+    
+        task.reminderId = jobId;
+        console.log("JobId", jobId);
+    }
+    else{
+        task.reminderId = null;
+    }
 
     let isTaskNameUnique = await Task.findOne({ name: `${task.name}`, created_by: `${req.user._id}` });
     //ager us naam ka task huaa us user k pass to isTaskNameUnique mein vo task object aa jayega
@@ -62,32 +76,6 @@ module.exports.postNewTask = async (req, res) => {
         res.redirect("/tasks/new");
     }
     else {
-        let phone_no = req.user.contact_num ? req.user.contact_num : null;
-
-        let hr = task.d_time.substring(0, 2);   //e.g. 16:36
-        let min = task.d_time.substring(3);
-
-        let month = task.d_date.substring(5, 7);
-        let date = task.d_date.substring(8);
-
-        let reminderTime = "" + min + " " + hr + " " + date + " " + month + " *";
-        console.log(reminderTime);
-        if (Date.now() < Date.parse(task.deadline) && phone_no) {
-            let taskRef = createJob({
-                date: reminderTime,
-                owner: req.user.name,
-                taskName: task.name,
-                userContact: phone_no,
-            });
-
-            // task.jobRef = JSON.stringify(taskRef);
-            // console.log("TaskRef", task.jobRef);
-            // console.log("TaskRef", taskRef);
-        }
-        else {
-            task.jobRef = null;
-        }
-
         if (!listData) {
             listData = [];
         }
@@ -117,7 +105,6 @@ module.exports.postNewTask = async (req, res) => {
 
         res.redirect(`/tasks/${newtask._id}`);
     }
-    // res.redirect(`/tasks/new`);
 
 }
 
@@ -163,36 +150,26 @@ module.exports.editTask = async (req, res) => {
         console.log(task.d_time);
         task.deadline = task.d_date + "T" + task.d_time;
 
-
-
         if ((task.deadline != oldSavedTask.deadline) && (Date.now() < Date.parse(task.deadline))) {
-
-            if (oldSavedTask.jobRef) {
-                oldSavedTask.jobRef.stop();
+            let reminder = schedule.scheduledJobs[`${oldSavedTask.reminderId}`]
+            if(reminder){
+                reminder.cancel();
             }
             //for cancel it will return true or false
 
             let phone_no = req.user.contact_num ? req.user.contact_num : null;
-
-            let hr = task.d_time.substring(0, 2);   //e.g. 16:36
-            let min = task.d_time.substring(3);
-
-            let month = task.d_date.substring(5, 7);
-            let date = task.d_date.substring(8);
-
-            let reminderTime = "" + min + " " + hr + " " + date + " " + month + " *";
-
+            
             //ager phone number nhi to schedule kene ka kyafayda isliye
-            if (phone_no) { //phone number hai to schedule hai
-                let taskRef = createJob({
-                    date: reminderTime,
+            if(phone_no){ //phone number hai to schedule hai
+                let jobId = createJob({
+                    date: task.deadline,
                     owner: req.user.name,
                     taskName: oldSavedTask.name,
                     userContact: phone_no,
                 });
-
-                // task.jobRef = taskRef;
-                // console.log("taskRef", taskRef);
+    
+                task.reminderId = jobId;
+                console.log("JobId",jobId);
             }
         }
 
