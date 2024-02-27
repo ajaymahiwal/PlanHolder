@@ -81,6 +81,8 @@ module.exports.postNewTask = async (req, res) => {
         }
         task.list = listData;
         task.created_by = req.user._id;
+        task.created_at = Date.now();
+        console.log(task.created_at)
         let newtask = new Task({ ...task });
         await newtask.save();
 
