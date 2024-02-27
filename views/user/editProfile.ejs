@@ -67,6 +67,15 @@
         #emailAcc:focus + p{
             display: block;
         }
+        #contact + p{
+            display: none;
+            font-size: .9rem;
+            color: #00a34d;
+            font-weight: 500;
+        }
+        #contact:focus + p{
+            display: block;
+        }
         .green-btn-adv{
             margin-block: 2rem;
         }
@@ -107,7 +116,8 @@
                 </div>
                 <div>
                     <label for="">Contact Number</label>
-                    <input type="number" name="user[contact_num]" id="contact" value="<%=currUser.contact_num ? currUser.contact_num : ""%>">
+                    <input type="number" name="user[contact_num]" id="contact" value="<%=currUser.contact_num ? currUser.contact_num : ""%>" placeholder="e.g. +917404177777">
+                    <p>Message : Please Add Country Code Also With Phone Number.</p>
                 </div>
                 <div>
                     <label for="">Email Account</label>

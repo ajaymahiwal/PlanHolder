@@ -117,7 +117,9 @@
                 <div>
                     <label for="">Task Deadline</label>
                     <% if (task.deadline) { %>
-                        <input type="date" name="task[deadline]" id="" value="<%=task.deadline.toISOString().substring(0, 10);%>" required>
+                        <!-- <input type="date" name="task[deadline]" id="" value="<%=task.deadline.toISOString().substring(0, 10);%>" required> -->
+                        <input type="date" name="task[d_date]" id="" value="<%=task.deadline.toISOString().substring(0, 10); %>" required>
+                        <input type="time" name="task[d_time]" id="" value="<%=task.deadline.toLocaleString("en-GB", {timeZone: 'Asia/Kolkata'}).substring(12,20)%>" required>
                     <% } else{%>
                         <input type="date" name="task[deadline]" id="" value="" required>
                     <% } %>

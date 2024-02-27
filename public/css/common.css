@@ -147,9 +147,7 @@ header nav ul{
     color: #00a34d;
     text-align: center;
 }
-.dashboard-link:hover{
-    text-decoration: underline 2px #00a34d;
-}
+
 #main-logo{
     text-align: center;
     margin: 1rem auto;
@@ -181,10 +179,6 @@ header nav ul{
     font-weight: 500;
     padding: 0.5rem 2vw;
     border-radius: 20px;
-}
-.start-plan:hover{
-    color: white;
-    background-color: #00a34d;
 }
 
 

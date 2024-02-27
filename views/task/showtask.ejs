@@ -41,11 +41,14 @@
         time{
             font-size: 1.2rem;
             font-weight: 500;
-            margin-block: .6rem;
+            margin-block: .4rem;
         }
         time:nth-of-type(2){
             border-bottom: 2px solid red;
             width: fit-content;
+        }
+        .highlight{
+            background-color: yellow;
         }
         
         .del-btn{
@@ -135,9 +138,7 @@
             font-size: 2rem;
             border-bottom: 2px solid #00a34d;
         }
-        .highlight{
-            background-color: yellow;
-        }
+        
         .lists-with-task{
             margin-top: 2rem;
         }
@@ -174,6 +175,27 @@
             flex-wrap: wrap;
         }
         }
+
+        .urgent-msg{
+            border: 2px solid red;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .urgent-msg i{
+            align-self: flex-end;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .add-now{
+            text-align: center;
+            font-size: 1rem !important;
+            padding: .2rem 1rem !important;
+            /* width: 40%; */
+        }
+
       </style>
 </head>
 <body>
@@ -181,14 +203,26 @@
     <%- include("../include/flash-msg.ejs") %>
 
     <main>
+
+        <% if (!currUser.contact_num) { %>
+          <div class="urgent-msg">
+                <i class="ri-close-line close-btn"></i>
+                <h2>Please Add Your Phone Number If You Want To Get Reminders On Time :) <a href="/user/profile/<%= currUser._id%>/edit" class="green-btn add-now">Add Now</a></h2>
+          </div>
+        <% } %>
+
         <section class="sec" id="sec-1">
             <h1 class="txt-cap imp-txt main-title">Task : <%= task.name %></h1>
             <div>
                 <h1 class="imp-txt">Description :</h1>
                 <p class="task-des"><%= task.description %></p>
             </div>
+            <!-- <div>
             <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%= task.created_at.toISOString().substring(0,10).split('T').join(" at ")%></time>
             <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Deadline : <%= task.deadline.toISOString().substring(0,10);%></time>
+            </div> -->
+            <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%=task.created_at.toLocaleString("en-GB", {timeZone: 'Asia/Kolkata'})%></time>
+            <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Deadline : <%=task.deadline.toLocaleString("en-GB", {timeZone: 'Asia/Kolkata'})%>  </time>
             
             <% if (task.completed) { %>
                 <form action="/tasks/<%= task._id %>/completed?_method=PUT&value=false" method="post">
@@ -266,6 +300,13 @@
         })
         
     
+    </script>
+    <script>
+        let closeBtn = document.querySelector(".close-btn");
+        let urgentMsg = document.querySelector(".urgent-msg");
+        closeBtn.addEventListener("click",(e)=>{
+            urgentMsg.classList.add("hide");
+        })
     </script>
 </body>
 <!-- <h1><%= task.created_at %></h1> -->

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a new task</title>
     <%- include("../include/head") %>
+
     <style>
         main {
         margin-top: 3vw;
@@ -86,6 +87,12 @@
       
     </style>
     
+<!-- 
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
 </head>
 <body>
     <%- include("../include/simple-header") %>
@@ -106,8 +113,11 @@
                 </div>
                 <div>
                     <label for="">Task Deadline</label>
-                    <input type="date" name="task[deadline]" id="" required>
+                    <input type="date" name="task[d_date]" id="" required>
+                    <input type="time" name="task[d_time]" id="" required>
                 </div>
+                <!-- <input id="phone" type="tel" name="phone" /> -->
+
                 <div>
                     <label for="" class="imp-txt">Select List Name For Task, if you want to choose :)</label>
                     <div class="all-lists">
@@ -128,5 +138,15 @@
 
 
     <%- include("../include/footer.ejs") %>
+
+
+    <!-- <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    </script> -->
+   
 </body>
 </html>

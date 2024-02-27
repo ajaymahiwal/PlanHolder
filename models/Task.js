@@ -27,6 +27,9 @@ const taskSchema = new mongoose.Schema({
     completed:{
         type:Boolean,
         default:false,
+    },
+    reminderId:{
+        type:String,
     }
 });
 
