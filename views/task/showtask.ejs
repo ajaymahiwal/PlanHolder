@@ -70,6 +70,7 @@
             row-gap: 2vw;
         }
         .task-des{
+            min-height: 5rem;
             padding-inline-start: 14ch;
             font-size: 1.2rem;
             font-weight: 500;
@@ -136,7 +137,7 @@
         }
         .main-title{
             font-size: 2rem;
-            border-bottom: 2px solid #00a34d;
+            
         }
         
         .lists-with-task{
@@ -157,6 +158,9 @@
           margin: 1rem auto;
           padding: .4rem 2rem;
           font-size: 1rem;
+        }
+        .main-title{
+            font-size: 1.8rem;
         }
         }
         @media(width<=360px){
@@ -183,6 +187,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            margin-top: .5rem;
+            margin-bottom: 2.5rem;
         }
         .urgent-msg i{
             align-self: flex-end;
@@ -222,7 +228,7 @@
             <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Deadline : <%= task.deadline.toISOString().substring(0,10);%></time>
             </div> -->
             <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%=task.created_at.toLocaleString("en-GB", {timeZone: 'Asia/Kolkata'})%></time>
-            <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Deadline : <%=task.deadline.toLocaleString("en-GB", {timeZone: 'Asia/Kolkata'})%>  </time>
+            <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Reminder Time : <%=task.deadline.toLocaleString("en-GB", {timeZone: 'Asia/Kolkata'})%>  </time>
             
             <% if (task.completed) { %>
                 <form action="/tasks/<%= task._id %>/completed?_method=PUT&value=false" method="post">

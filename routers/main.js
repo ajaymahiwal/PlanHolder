@@ -81,7 +81,7 @@ router.get("/login", (req, res) => {
 router.post("/login", passport.authenticate("local", { failureRedirect: "/login", failureFlash: true, successFlash: true }), (req, res) => {
     console.log("login complete");
     // req.flash("success", "Wow,You are logged in !");
-    res.redirect(`/user/profile/${req.user._id}`);
+    res.redirect(`/user/profile/${req.user._id}/edit`);
 });
 
 router.delete("/logout", (req, res) => {
@@ -103,7 +103,7 @@ router.get("/login/google",
 router.get("/auth/google/callback",
             passport.authenticate('google',{ failureRedirect:"/signup",failureFlash:true}),
             (req,res)=>{
-                res.redirect(`/user/profile/${req.user._id}`);
+                res.redirect(`/user/profile/${req.user._id}/edit`);
             }
 );
 
