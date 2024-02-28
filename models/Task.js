@@ -28,6 +28,9 @@ const taskSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
+    reminderId:{
+        type:String,
+    },
     jobRef:{
         type:mongoose.Schema.Types.Mixed,
     }

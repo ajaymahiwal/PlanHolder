@@ -39,7 +39,7 @@ main()
     .catch((err) => {
         console.log("ERROR ERROR ERROR");
         console.log("Can't Connected With DB. See Error.");
-        console.log(err);
+        // console.log(err);
     });
 
 
@@ -148,7 +148,7 @@ app.all("*", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    console.log(err);
+    // console.log(err);
     // res.send("Error Occured !");
     res.render("./other/all-error",{err});
 });

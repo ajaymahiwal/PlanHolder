@@ -25,6 +25,10 @@ function createJob(reminder) {
             .catch(error => console.error(error));
         console.log("msg is sent now");
 
+    },{
+        // scheduled: true,
+        timezone: "Asia/Kolkata"
+
     })
     // console.log("job",job);
     console.log("job is created !");
@@ -50,7 +54,8 @@ module.exports.postNewTask = async (req, res) => {
     task.name = task.name.toLowerCase();
     console.log(task.d_date);
     console.log(task.d_time);
-    task.deadline = task.d_date + "T" + task.d_time;
+    task.deadline = task.d_date + "T" + task.d_time+":00.000Z";
+    
 
 
 
@@ -67,12 +72,19 @@ module.exports.postNewTask = async (req, res) => {
         let hr = task.d_time.substring(0, 2);   //e.g. 16:36
         let min = task.d_time.substring(3);
 
-        let month = task.d_date.substring(5, 7);
+        let month = task.d_date.substring(5, 7); //e.g 2024-02-27
         let date = task.d_date.substring(8);
 
         let reminderTime = "" + min + " " + hr + " " + date + " " + month + " *";
         console.log(reminderTime);
-        if (Date.now() < Date.parse(task.deadline) && phone_no) {
+        let indianCurrentTime = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+        console.log(indianCurrentTime);
+        console.log(task.deadline);
+        console.log(Date.parse(task.deadline));
+        console.log("Date.parse result", Date.parse(task.deadline) > Date.parse(indianCurrentTime));
+
+
+        if ((Date.parse(indianCurrentTime) < Date.parse(task.deadline)) && phone_no) {
             let taskRef = createJob({
                 date: reminderTime,
                 owner: req.user.name,
@@ -94,6 +106,11 @@ module.exports.postNewTask = async (req, res) => {
         task.list = listData;
         task.created_by = req.user._id;
         task.created_at = Date.now();
+        // ye time hai indian but ye isse GMT smaj rhe hai isliye -5:30 ker duga
+        task.deadline = Date.parse(task.deadline) - (5.5 * 60 * 60 * 1000);
+        task.deadline = new Date(task.deadline);
+        
+        // new Date(Date.now()).toLocaleString(undefined,{timezone:"Asia/Kolkata"})
         console.log(task.created_at)
         let newtask = new Task({ ...task });
         await newtask.save();
@@ -124,14 +141,23 @@ module.exports.postNewTask = async (req, res) => {
 
 module.exports.getTask = async (req, res) => {
     let id = req.params.id;
+
     let task = await Task.findById(id);
-    res.render("./task/showtask", { task });
+    if (task) {
+        res.render("./task/showtask", { task });
+    }else {
+        throw new Error("Task Not found");
+    }
 }
 
 module.exports.getEditTaskPage = async (req, res) => {
     let id = req.params.id;
     let task = await Task.findById(id);
-    res.render("./task/edit", { task });
+    if (task) {
+        res.render("./task/edit", { task });
+    }else {
+        throw new Error("Task Not found");
+    }
 }
 
 
@@ -161,11 +187,14 @@ module.exports.editTask = async (req, res) => {
 
         console.log(task.d_date);
         console.log(task.d_time);
-        task.deadline = task.d_date + "T" + task.d_time;
+        task.deadline = task.d_date + "T" + task.d_time+":00.000Z"; 
+
+        let indianCurrentTime = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+        console.log("Date.parse result", Date.parse(task.deadline) > Date.parse(indianCurrentTime));
 
 
 
-        if ((task.deadline != oldSavedTask.deadline) && (Date.now() < Date.parse(task.deadline))) {
+        if ((task.deadline != oldSavedTask.deadline) && (Date.parse(indianCurrentTime) < Date.parse(task.deadline))) {
 
             if (oldSavedTask.jobRef) {
                 oldSavedTask.jobRef.stop();
@@ -200,6 +229,9 @@ module.exports.editTask = async (req, res) => {
         if (!listData) {
             listData = [];
         }
+        // ye time hai indian but ye isse GMT smaj rhe hai isliye -5:30 ker duga
+        task.deadline = Date.parse(task.deadline) - (5.5 * 60 * 60 * 1000);
+        task.deadline = new Date(task.deadline);
         let newTask = await Task.findByIdAndUpdate(id, { ...task, list: [...listData] }, { new: true, runValidators: true });
         await newTask.save();
         console.log("Updated Task", newTask);
