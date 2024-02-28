@@ -227,9 +227,12 @@
             <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%= task.created_at.toISOString().substring(0,10).split('T').join(" at ")%></time>
             <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Deadline : <%= task.deadline.toISOString().substring(0,10);%></time>
             </div> -->
-            <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%=task.created_at.toLocaleString(undefined,{timezone:"Asia/Kolkata"})%></time>
+            <!-- <div>
+                <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%=task.created_at.toLocaleString(undefined,{timezone:"Asia/Kolkata"})%></time>
             <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Reminder Time : <%=task.deadline.toLocaleString(undefined,{timezone:"Asia/Kolkata"})%>  </time>
-            
+            </div> -->
+            <time datetime="<%= task.created_at.toISOString(); %>">Created At : <%=  new Date(Date.parse(task.created_at) + (5.5 * 60 * 60 * 1000)).toLocaleString("en-IN",{timezone:"Asia/Kolkata"})  %></time>
+            <time datetime="<%= task.deadline.toISOString()%>" class="highlight">Reminder Time : <%=  new Date(Date.parse(task.deadline) + (5.5 * 60 * 60 * 1000)).toLocaleString("en-IN",{timezone:"Asia/Kolkata"})  %>  </time>
             
             <% if (task.completed) { %>
                 <form action="/tasks/<%= task._id %>/completed?_method=PUT&value=false" method="post">
