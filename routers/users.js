@@ -51,7 +51,7 @@ router.put("/profile/:id/edit", isOwner, async (req, res) => {
     delete user.username; //it someone added i will not allow to change anybody
     // user.name = user.name.toLowerCase(); //user have full choice to  decide name
     let phone_no = user.contact_num;
-    console.log("ashgdfak")
+    
     console.log(phone_no)
     if (phone_no.length < 10 || phone_no.length > 13) { //e.g. +91 81681-52757
         phone_no = null;
