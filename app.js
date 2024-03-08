@@ -26,7 +26,7 @@ const userRouter = require("./routers/users");
 const listRouter = require("./routers/lists");
 const mainRouter = require("./routers/main");
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/taskmgt';
+// const MONGO_URL = 'mongodb://127.0.0.1:27017/taskmgt';
 async function main() {
     // await mongoose.connect(MONGO_URL);
     await mongoose.connect(process.env.ATLAS_MONGODB_URL);
@@ -53,15 +53,15 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride("_method"));
 app.use(flash());
 
-// const storeConfig = MongoStore.create(
-//     { mongoUrl: process.env.ATLAS_MONGODB_URL,
-//         crypto:{
-//             secret:"ajaymahiwal",
-//         } 
-//     });
-// storeConfig.on("error",()=>{
-//     console.log("Error in connect-mongo store.");
-// })
+const storeConfig = MongoStore.create(
+    { mongoUrl: process.env.ATLAS_MONGODB_URL,
+        crypto:{
+            secret:"ajaymahiwal",
+        }
+    });
+storeConfig.on("error",()=>{
+    console.log("Error in connect-mongo store.");
+})
 app.use(session({
     secret: 'ajaymahiwal',
     resave: false,

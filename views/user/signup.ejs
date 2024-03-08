@@ -240,7 +240,7 @@
 
     <div class="main-form">
         <h1 class="form-title">Happy Planning :)</h1>
-        <form action="/signup" method="post">
+        <form action="/signup" method="post" id="user-main-form">
             <div>
                 <label for="name">Your Name:</label>
                 <input type="text" name="user[name]" id="name" required>
@@ -253,16 +253,16 @@
                 <label for="pass">Password:</label>
                 <input type="password" name="user[password]" id="pass" required>
             </div>
-            <button>Sign Up</button>
+            <button class="sign-log-btn">Sign Up</button>
         </form>
         <div class="or-main"><span> Or </span></div>
-        <div class="login-with-google"><a href="/login/google" class="login-with-"><i class="ri-google-fill"></i> Sign Up With Google</a></div>
+        <div class="login-with-google"><a href="/login/google" class="login-with sign-log-btn"><i class="ri-google-fill"></i> Sign Up With Google</a></div>
 
         <p class="account-yes-or-not">Already have a PlanHolder account ? <a href="/login" class="ref-links">Log in</a></p>
     </div>
 
     <div class="plan-holder-yt-iframe">
-        <iframe src="https://www.youtube.com/embed/Oxbde2OeBx4?si=AX5juvocI9JAlJXO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/FiFvtuPX4xk?si=tjZTbz6TG3RSZ9tX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <div>
             <a href="" class="ref-links">Watch more videos</a>
             <a href="" class="ref-links">Getting Started</a>
@@ -304,5 +304,25 @@
         </div>
       </section>
     <%- include("../include/footer") %>
+
+    <script>
+        let signlogBtn = document.getElementsByClassName("sign-log-btn");
+
+        let form = document.querySelector("#user-main-form");
+
+        form.addEventListener("submit",(e)=>{
+            for(let i=0;i<signlogBtn.length;i++){
+    signlogBtn[i].addEventListener("click",(e)=>{
+        signlogBtn[i].disabled = true;
+        console.log("disabled");
+        setTimeout(function(){
+            console.log("enabled");
+            signlogBtn[i].disabled = false;
+        },5000);
+    })
+}
+        })
+        
+    </script>
 </body>
 </html>

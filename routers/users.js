@@ -52,22 +52,22 @@ router.put("/profile/:id/edit", isOwner, async (req, res) => {
     // user.name = user.name.toLowerCase(); //user have full choice to  decide name
     let phone_no = user.contact_num;
     
-    console.log(phone_no)
-    if (phone_no.length < 10 || phone_no.length > 13) { //e.g. +91 81681-52757
-        phone_no = null;
-        req.flash("error","Please Enter Vaild Phone Number :)");
-        res.redirect(`/user/profile/${req.user._id}/edit`);
-    } else {
-        if (phone_no.length == 10) {
-            phone_no = "91" + phone_no;
-        }
+    // console.log(phone_no)
+    // if (phone_no.length < 10 || phone_no.length > 13) { //e.g. +91 81681-52757
+    //     phone_no = null;
+    //     req.flash("error","Please Enter Vaild Phone Number :)");
+    //     res.redirect(`/user/profile/${req.user._id}/edit`);
+    // } else {
+    //     if (phone_no.length == 10) {
+    //         phone_no = "91" + phone_no;
+    //     }
 
-        user.contact_num = phone_no;
+        // user.contact_num = phone_no;
         let updatedUser = await User.findByIdAndUpdate(`${req.user._id}`, { ...user }, { new: true, runValidators: true });
         console.log(updatedUser);
         // let updatedUser = await User.findById(`${req.user._id}`);
         res.redirect(`/user/profile/${req.user._id}`);
-    }
+    // }
 });
 
 
